@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Opdracht_1.2</title>
+	</head>
+	<header>
+		<h1>Welkom bij Opdracht 1.2!</h1>
+		
+		<ul>
+			<li>
+				<a href="index.html">Home</a>
+			</li>
+			<li>
+				<a href="about.html">About</a>
+			</li>
+			<li>
+				<a href="contact.html">Contact</a>
+			</li>
+		</ul>
+	</header>
+	<body>
+		<form>
+			<!-- dropdown aanhef-->
+			<label for="gender">
+				<select id="gender" name="gender">
+					<option>Dhr.</option>
+					<option>Mvr.</option>
+					<option>Anders/geen</option>
+				</select>
+			</label><br>
+			
+			<!--velden voor naam, email, telefon-->
+			<label for="name">Naam:<br>
+				<input type="text" id="name" name="name">
+			</label><br>
+			<label for="email">Email:<br>
+				<input type="text" id="email" name="email">
+			</label><br>
+			<label for="phone">Telefoon:<br>
+				<input type="text" id="phone" name="phone">	
+			</label><br>
+				
+			<!--radiobutton voorkeurcommuniciate-->
+			<label for="email">
+				<input type="radio" id="email" name="compref" value="email">email
+			</label>
+			<label for="phone">	
+				<input type="radio" id="phone" name="compref" value="phone">phone
+			</label><br>
+				
+			<!--veld voor bericht-->
+			<label for="message">
+				<textarea id="message" name="message" rows="10" cols="50">Typ hier je bericht...</textarea>
+			</label><br>
+			
+			<!--verstuur knop-->
+			<label for="submit">
+				<button type="submit" id="submit">Submit</button>
+			</label><br>
+		</form>
+	</body>
+	<footer>
+		<p>
+			&copy; Matthijs van Dijk, 2021
+		</p>
+	</footer>
+</html>
