@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Opdracht_1.2</title>
+		<title>Opdracht_1.2 - Contact</title>
+		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<header>
 		<h1>Welkom bij Opdracht 1.2!</h1>
@@ -33,27 +34,29 @@
 				</label><br>
 				
 				<!--velden voor naam, email, telefon-->
-				<label for="name">Naam:<br>
+				<label for="name">Naam:
 					<input type="text" id="name" name="name">
 				</label><br>
-				<label for="email">Email:<br>
+				<label for="email">Email:
 					<input type="text" id="email" name="email">
 				</label><br>
-				<label for="phone">Telefoon:<br>
+				<label for="phone">Telefoon:
 					<input type="text" id="phone" name="phone">	
 				</label><br>
 					
 				<!--radiobutton voorkeurcommuniciate-->
-				<label for="email">
-					<input type="radio" id="email" name="compref" value="email">email
-				</label>
-				<label for="phone">	
-					<input type="radio" id="phone" name="compref" value="phone">phone
-				</label><br>
-					
+				<div class="radiobuttons">
+					<div>Heeft email of telefoon je voorkeur?</div>
+					<label for="radio_email">
+						Email<input type="radio" id="radio_email" name="compref" value="email">
+					</label>
+					<label for="radio_phone">	
+						Phone<input type="radio" id="radio_phone" name="compref" value="phone">
+					</label><br>
+				</div>	
 				<!--veld voor bericht-->
 				<label for="message">
-					<textarea id="message" name="message" rows="10" cols="50">Typ hier je bericht...</textarea>
+					<textarea id="message" name="message" rows="10" cols="57">Typ hier je bericht...</textarea>
 				</label><br>
 				
 				<!--verstuur knop-->
