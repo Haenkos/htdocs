@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Opdracht_1.2 - Contact</title>
+        <title>Opdracht_1.3 - Contact</title>
         <link rel="stylesheet" href="css/styles.css">
     </head>
 
@@ -14,7 +14,7 @@
             function formatInput($input) {
                 $input = trim($input);
                 $input = stripslashes($input);
-                $htmlspecialchars($input);
+                //$htmlspecialchars($input);
                 return $input;
             }
 
@@ -63,13 +63,19 @@
                 }
 
                 if (empty($_POST["message"])) {
-                    $messageError = "Naam invullen a.u.b.";
+                    $messageError = "Typ a.u.b. een bericht, lege berichten worden genegeerd.";
                 } else {
                     $message = formatInput($_POST["message"]);
                 }
 
-                if ($nameError = $emailError = $phoneError = $comprefError = $messageError = "") {
+                if ($nameError == "" &&
+                    $emailError == "" &&
+                    $phoneError == "" &&
+                    $comprefError == "" &&
+                    $messageError == "") {
+
                     $valid = true;
+                }
             }
         ?>
 
@@ -84,16 +90,16 @@
                         <a href="about.html">About</a>
                     </li>
                     <li>
-                        <a href="contact.html" class="active">Contact</a>
+                        <a href="contact.php" class="active">Contact</a>
                     </li>
                 </ul>
             </nav>
         </header>
 
-        <?php if (!valid) { ?>
+        <?php if (!$valid) { ?>
 
         <div class="contact_form">
-            <form>
+            <form action= "contact.php" method="post">
                 <!-- dropdown aanhef-->
                 <label for="gender">
                     <select id="gender" name="gender">
@@ -105,30 +111,37 @@
 
                 <!--velden voor naam, email, telefon-->
                 <label for="name">Naam:
-                    <input type="text" id="name" name="name"><?=$nameError;?>
+                    <input type="text" id="name" name="name" value="<?=$name;?>"> <?=$nameError;?>
                 </label><br>
                 <label for="email">Email:
-                    <input type="text" id="email" name="email"><?=$emailError;?>
+                    <input type="text" id="email" name="email" value="<?=$email;?>"> <?=$emailError;?>
                 </label><br>
                 <label for="phone">Telefoon:
-                    <input type="text" id="phone" name="phone"><?=$phoneError;?>
+                    <input type="text" id="phone" name="phone" value="<?=$phone;?>"> <?=$phoneError;?>
                 </label><br>
 
                 <!--radiobutton voorkeurcommuniciate-->
                 <div class="radiobuttons">
                     <div>Heeft email of telefoon je voorkeur?</div>
                     <label for="radio_email">
-                        Email<input type="radio" id="radio_email" name="compref" value="email">
+                        Email<input type="radio" id="radio_email" name="compref"
+                        <?php if(isset($compref) && $compref=="email") echo "checked";?>
+                        value="email">
                     </label>
                     <label for="radio_phone">
-                        Phone<input type="radio" id="radio_phone" name="compref" value="phone">
+                        Phone<input type="radio" id="radio_phone" name="compref"
+                        <?php if(isset($compref) && $compref=="phone") echo "checked";?>
+                        value="phone"> <?=$comprefError?>
                     </label><br>
                 </div>
                 <!--veld voor bericht-->
                 <label for="message">
-                    <textarea id="message" name="message" rows="10" cols="57" placeholder="Typ hier je bericht..."></textarea>
+                    <?=$messageError;?><br>
+                    <textarea id="message" name="message" rows="10" cols="57" placeholder="Typ hier je bericht..."><?php
+                    if (isset($message)) echo $message;
+                    ?></textarea>
                 </label><br>
-                <?=$messageError;?>
+
 
                 <!--verstuur knop-->
                 <label for="submit">
@@ -144,7 +157,9 @@
         <div>Naam: <?=$name; ?></div>
         <div>Email: <?=$email; ?></div>
         <div>Nummer: <?=$phone; ?></div>
-        <div>Bericht: <?=$message; ?></div>
+        <div>Bericht: <br><?=$message; ?></div>
+
+        <?php } ?>
 
         <footer>
             <p>
