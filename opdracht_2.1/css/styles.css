@@ -63,6 +63,14 @@ input[type="text"] {
     margin-bottom: 5px;
 }
 
+.radiobuttons {
+    margin-bottom: 5px;
+}
+
+.error {
+    color: red;
+}
+
 #name {
     margin-left: 28px;
     margin-top: 5px;
@@ -76,11 +84,9 @@ input[type="text"] {
     margin-left: 10px;
 }
 
-.radiobuttons {
-    margin-bottom: 5px;
-}
 
 #submit {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+

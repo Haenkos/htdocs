@@ -89,7 +89,6 @@ function showHeader($page)
     echo '<header>
             <h1>' . ucfirst($page) . '</h1>
         </header>';
-    echo print_r($_POST);
 } 
 //============================================== 
 function showMenu() 
