@@ -63,6 +63,7 @@ input[type="text"] {
     margin-bottom: 5px;
 }
 
+<<<<<<< HEAD
 .radiobuttons {
     margin-bottom: 5px;
 }
@@ -71,6 +72,8 @@ input[type="text"] {
     color: red;
 }
 
+=======
+>>>>>>> c77548d651442af648283231e3b97f8a5a93be98
 #name {
     margin-left: 28px;
     margin-top: 5px;
@@ -84,9 +87,18 @@ input[type="text"] {
     margin-left: 10px;
 }
 
+<<<<<<< HEAD
+=======
+.radiobuttons {
+    margin-bottom: 5px;
+}
+>>>>>>> c77548d651442af648283231e3b97f8a5a93be98
 
 #submit {
     margin-top: 5px;
     margin-bottom: 5px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c77548d651442af648283231e3b97f8a5a93be98
