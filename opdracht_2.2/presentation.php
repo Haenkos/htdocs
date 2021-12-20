@@ -1,16 +1,6 @@
 <?php
 
-//============================================== 
-// MAIN APP 
-//============================================== 
-$page = getRequestedPage(); 
-showResponsePage($page); 
-//============================================== 
-// FUNCTIONS
-//============================================== 
-
-//============================================== 
-function showResponsePage($page)
+function showResponsePage($page) 
 { 
    beginDocument(); 
    showHeadSection(); 
@@ -102,6 +92,5 @@ function showFooter()
             </p>
         </footer>';
 } 
-//============================================== 
-// Verdere functies zelf invullen.... 
+
 ?>
