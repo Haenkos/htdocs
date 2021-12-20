@@ -1,10 +1,10 @@
 <?php
 
-function showResponsePage($page) 
+function showResponsePage($page, $data) 
 { 
    beginDocument(); 
    showHeadSection(); 
-   showBodySection($page); 
+   showBodySection($page, $data); 
    endDocument(); 
 }     
 //============================================== 
@@ -19,17 +19,17 @@ function beginDocument()
 function showHeadSection() 
 { 
   echo '<head>
-            <title>Opdracht 2.1</title>
+            <title>Opdracht 2.2</title>
             <link rel="stylesheet" href="css/styles.css">
         </head>';
 } 
 //============================================== 
-function showBodySection($page) 
+function showBodySection($page, $data) 
 { 
    echo '    <body>' . PHP_EOL; 
    showHeader($page);
    showMenu(); 
-   showContent($page); 
+   showContent($page, $data); 
    showFooter(); 
    echo '    </body>' . PHP_EOL; 
 } 
@@ -61,24 +61,47 @@ function showMenu()
                     <a href="index.php?page=contact">Contact</a>
                 </li>
             </ul>
+
+            <div class="loginmenu">
+                <ul>
+                    <li>
+                        <a href="index.php?page=login">login</a>
+                    </li>
+                    <li>
+                        <a href="index.php?page=register">register</a>
+                    </li>
+                </ul>
+            </div>
         </nav>';
 } 
 //============================================== 
-function showContent($page) 
+function showContent($page, $data) 
 { 
    switch ($page) 
    { 
         case 'home':
-            require('home.php');
+            require_once('home.php');
             showHomeContent();
             break;
         case 'about':
-            require('about.php');
+            require_once('about.php');
             showAboutContent();
             break;
         case 'contact':
-            require('contact.php');
-            showContactcontent();
+            require_once('contact_form.php');
+            showContactForm($data);
+            break;
+        case 'thanks':
+            require_once('contact_thanks.php');
+            showThanksMessage($data);
+        //TODO: update this function
+        case 'login':
+            require_once('login.php');
+            showLoginContent();
+            break;
+        case 'register':
+            require_once('register.php');
+            showRegisterContent($data);
             break;
 
    }     

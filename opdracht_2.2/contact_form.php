@@ -2,7 +2,7 @@
 
     define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => ""));
     define('COM_PREFS', array("email" => "Email", "phone" => "Telefoon"));
-
+    
     function generateOptions($array) {
         foreach($array as $value => $option) {
             echo '<option value="'.$value.'">'.$option.'</option><br>'; 
@@ -40,14 +40,14 @@
                 </div>
 
                 <label for="radio_email">
-                    Email<input type="radio" id="radio_email" name="compref" value="'.COM_PREFS["email"].'"';
-                    if(isset($data['compref']) && $data['compref']=="email") echo "checked";
+                    Email<input type="radio" id="radio_email" name="compref" value="email"';
+                    if(isset($data['compref']) && $data['compref']=="email") {echo "checked";}
                     echo '>
                 </label>
 
                 <label for="radio_phone">
-                    Phone<input type="radio" id="radio_phone" name="compref" value="'.COM_PREFS["phone"].'"';
-                    if(isset($data['compref']) && $data['compref']=="phone") echo "checked";
+                    Phone<input type="radio" id="radio_phone" name="compref" value="phone"';
+                    if(isset($data['compref']) && $data['compref']=="phone") {echo "checked";}
                     echo '> '.$data['comprefError'].'
                 </label><br>
             </div>
