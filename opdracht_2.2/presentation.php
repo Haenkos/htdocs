@@ -1,10 +1,10 @@
 <?php
-    function showResponsePage($data, $page) 
+    function showResponsePage($data) 
     {
 
         beginDocument(); 
         showHeadSection(); 
-        showBodySection($page, $data); 
+        showBodySection($data); 
         endDocument(); 
     }     
     
@@ -22,13 +22,13 @@
             </head>';
     } 
     
-    function showBodySection($page, $data) 
+    function showBodySection($data) 
     { 
        echo '    <body>' . PHP_EOL;
-       debugData($page, $data);
-       showHeader($page);
+       debugData($data);
+       showHeader($data['page']);
        showMenu(); 
-       showContent($page, $data); 
+       showContent($data); 
        showFooter(); 
        echo '    </body>' . PHP_EOL; 
     } 
@@ -62,23 +62,25 @@
             </nav>';
     } 
     
-    function showContent($page, $data) 
+    function showContent($data) 
     { 
-       switch ($page) 
+       switch ($data['page']) 
        { 
             case 'home':
-                require('home.php');
+                require_once('home.php');
                 showHomeContent();
                 break;
             case 'about':
-                require('about.php');
+                require_once('about.php');
                 showAboutContent();
                 break;
             case 'contact':
-                require('contact.php');
-                showContactcontent($data);
+                require_once('contact.php');
+                showContactForm($data);
                 break;
-    
+            case 'thanks':
+                showContactThanks($data);
+                break;
        }     
     } 
     
@@ -91,12 +93,11 @@
             </footer>';
     } 
 
-    function debugData($page, $data) {
+    function debugData($data) {
 
         echo '<div>
                 <p>$_GET: '; var_dump($_GET); echo '</p>
                 <p>$_POST: '; var_dump($_POST); echo '</p>
-                <p>$page = '.$page.'</p>
                 <p>$data: '; var_dump($data); echo '</p>
             </div>';
     }

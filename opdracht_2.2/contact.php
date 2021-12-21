@@ -3,22 +3,13 @@
     define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
     define('COM_PREFS', array("email" => "email", "phone" => "phone"));
 
-    function showContactContent($data) {
-
-        if ($data['valid']) {
-            showThanksMessage($data);
-        } else {
-            showFormContent($data);
-        }
-    }
-
     function generateOptions($array) {
         foreach($array as $value => $option) {
             echo '<option value="'.$value.'">'.$option.'</option><br>';
         }
     }
 
-    function showFormContent($data) {
+    function showContactForm($data) {
         echo '<div class="contact_form">
         <form action= "index.php?page=contact" method="post">
             <div>
@@ -77,8 +68,9 @@
     </div>';        
     }
     
-    function showThanksMessage($data) {
+    function showContactThanks($data) {
         echo '<p>Bedankt voor uw reactie!</p>
+        
 
         <div>Naam: '.$data['name'].'</div>
         <div>Email: '.$data['email'].'</div>

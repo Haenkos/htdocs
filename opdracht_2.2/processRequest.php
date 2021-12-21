@@ -5,13 +5,14 @@
         switch ($page) {
             case 'contact':
                 $data = validateContactForm();
-                return $data;
+                if ($data['valid']) {
+                    $page = 'thanks';
+                }
                 break; 
-            default:
-                $data = array("page" => "$page", "valid" => false);
-                return $data;
-                break;
+            
         }
+        $data['page'] = $page;
+        return $data;
     }
 
 ?>

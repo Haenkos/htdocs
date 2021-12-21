@@ -1,4 +1,5 @@
 <?php
+    require_once 'contact.php';
 
     function formatInput($input) {
         $input = trim($input);
@@ -16,7 +17,6 @@
             "phone" => "",
             "compref" => "",
             "message" => "",
-            "page" => "",
             "valid" => false,
             "genderError" => "",
             "nameError" => "",

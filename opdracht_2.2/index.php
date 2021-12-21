@@ -7,6 +7,6 @@ $page = getRequestedPage();
 
 $data = processRequest($page);
 
-showResponsePage($data, $page);
+showResponsePage($data);
 
 ?>
