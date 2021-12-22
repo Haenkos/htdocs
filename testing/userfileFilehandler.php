@@ -4,11 +4,12 @@
         $usersDataArray = file("users\users.txt");
         echo '<pre> UsersdataArray:'.PHP_EOL; print_r($usersDataArray); echo '</pre>';
 
-        for ($i=1; $i<=count($usersDataArray); $i+=1) {
+        for ($i = 1; $i < count($usersDataArray); $i += 1) {
             $userEntry = explode(",", $usersDataArray[$i]);
-            echo '<pre>UserEntry:'.PHP_EOL; print_r($userEntry); echo '</pre>';
+            echo '<pre>UserEntry: '.$i.PHP_EOL; print_r($userEntry); echo '</pre>';
 
             if (strcmp($userEntry[1], $email) == 0) {
+                $userEntry = makeAssociative($userEntry);
                 return $userEntry; //TODO: make this a associative array
                 break;
             } else {
@@ -36,5 +37,15 @@
             fwrite($file, $userdataString.PHP_EOL);
             fclose($file);
         }
+    }
+
+    function makeAssociative($entry) {
+        $assocArray = array (
+            "userName" => $entry[0],
+            "userEmail" => $entry[1],
+            "userPassword" => $entry[2], 
+        );
+
+        return $assocArray;
     }
 ?>
