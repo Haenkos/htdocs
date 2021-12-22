@@ -47,10 +47,11 @@
     
     function showMenu() 
     { 
-      echo '<nav>
+      echo '<div class="menus">
+            <nav class="nav_menu">
                 <ul>
                     <li>
-                        <a href="index.php">home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
                         <a href="index.php?page=about">About</a>
@@ -59,7 +60,21 @@
                         <a href="index.php?page=contact">Contact</a>
                     </li>
                 </ul>
-            </nav>';
+            </nav>
+            <nav class="session_menu">
+                <ul>
+                    <li>
+                        <a href="index.php?page=login">Login</a>
+                    </li>
+                    <li>
+                        <a href="index.php?page=logout">Logout</a>
+                    </li>
+                    <li>
+                        <a href="index.php?page=registration">Register</a>
+                    </li>
+                </ul>
+            </nav>
+            </div>';
     } 
     
     function showContent($data) 
@@ -80,6 +95,14 @@
                 break;
             case 'thanks':
                 showContactThanks($data);
+                break;
+            case 'login':
+                require_once('login.php');
+                showLoginForm($data);
+                break;
+            case 'registration':
+                require_once('registration.php');
+                showRegistrationForm($data);
                 break;
        }     
     } 

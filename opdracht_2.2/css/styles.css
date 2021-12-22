@@ -16,18 +16,19 @@ header h1 {
     font-size: 50px;
 }
 
-nav {
+.nav_menu {
     text-align: center;
+    font-size: 14px;
     padding: 1px;
     background-color:rgb(87, 141, 141)
 }
 
-nav ul li {
+.nav_menu ul li {
     display: inline;
     padding: 24px;
 }
 
-nav ul li a {
+.nav_menu ul li a {
     color: aliceblue;
     text-decoration: none;
     border-style: solid;
@@ -38,12 +39,33 @@ nav ul li a {
     padding-top: 2px;
     padding-bottom: 2px;
 }
+.session_menu {
+    text-align: right;
+    padding: 1px;
+    background-color:rgb(87, 141, 141)
+}
 
+.session_menu ul li {
+    display: inline;
+    padding: 1px;
+}
+
+.session_menu ul li a {
+    color: aliceblue;
+    text-decoration: none;
+    border-style: solid;
+    border-width: 2px;
+    border-color: rgb(0, 66, 66);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
 nav ul li a:hover {
     text-decoration: underline;
 }
 
-nav ul li a.active {
+nav ul li a.active { /* TODO: fix active page link colour */
     border-color: rgb(3, 252, 194)
 }
 

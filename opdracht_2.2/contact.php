@@ -11,7 +11,10 @@
 
     function showContactForm($data) {
         echo '<div class="contact_form">
-        <form action= "index.php?page=contact" method="post">
+        <form action= "index.php" method="post">
+
+            <input type="hidden" id="page" name="page" value="contact">
+
             <div>
                 <label for="gender">
                     <select id="gender" name="gender">'; 
@@ -59,7 +62,6 @@
                 <span class="error">'.$data["messageError"].'</span>
             </label><br>
             
-            <input type="hidden" id="page" name="page" value="contact">
             
             <label for="submit">
                 <button type="submit" id="submit">Submit</button>
