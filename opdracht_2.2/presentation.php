@@ -119,9 +119,9 @@
     function debugData($data) {
 
         echo '<div>
-                <p>$_GET: '; var_dump($_GET); echo '</p>
-                <p>$_POST: '; var_dump($_POST); echo '</p>
-                <p>$data: '; var_dump($data); echo '</p>
+                <pre>$_GET: '; var_dump($_GET); echo '</pre>
+                <pre>$_POST: '; var_dump($_POST); echo '</pre>
+                <pre>$data: '; var_dump($data); echo '</pre>
             </div>';
     }
 ?>

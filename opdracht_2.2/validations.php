@@ -93,4 +93,76 @@
         }
         return $data;
     }
+
+    function validateRegistrationForm() {
+        $data = array(
+            "userName" => "",
+            "userEmail" => "",
+            "userPassword" => "",
+            "checkPassword" => "",
+            "valid" => false,
+            "errors" => array(
+                "userNameError" => "",
+                "userEmailError" => "",
+                "userPasswordError" => "",
+                "checkPasswordError" => ""
+            )
+        );
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST['userName'])) {
+                $data['userName'] = formatInput($_POST['userName']);
+
+                if(empty($data['userName'])) {
+                    $data['errors']['userNameError'] = "Username cannot be empty";
+                }
+
+            } else {
+                $data['errors']['userNameError'] = "Please choose a username";
+            }
+
+            if(empty($_POST['userEmail'])) {
+                $data['errors']['userEmailError'] = "Please provide email";
+            } else {
+                $data['userEmail'] = formatInput($_POST['userEmail']);
+
+                if (!filter_var($data['userEmail'], FILTER_VALIDATE_EMAIL)) {
+                    $data['errors']['userEmailError'] = "Geen valide e-mail adres"; 
+                }
+            }
+
+            if(empty($_POST['userPassword'])) {
+                $data['errors']['userPasswordError'] = "Please Choose a password";
+            } else {
+                $data['userPassword'] = formatInput($_POST['userPassword']);
+
+                if (strlen($data['userPassword']) < 9) {
+                    $data['errors']['userPasswordError'] = "Password must be 8 or more characters"; 
+                }
+            }
+
+            if(!empty($data['userPassword'])) {
+                if(empty($_POST['checkPassword'])) {
+                    $data['errors']['checkPasswordError'] = "Please retype password";
+                } else {
+                    $data['checkPassword'] = formatInput($_POST['checkPassword']);
+
+                    if (strcmp($data['userPassword'], $data['checkPassword']) !== 0) {
+                        $data['errors']['checkPasswordError'] = "Passwords do not match";
+                    }
+                }
+            }
+
+            if (
+                empty($data['errors']['userNameError']) &&
+                empty($data['errors']['userEmailError']) &&
+                empty($data['errors']['userPasswordError']) &&
+                empty($data['errors']['checkPasswordError'])
+                ) {
+                $data['valid'] = true;
+            }
+        }
+
+        return $data;
+    }
 ?>
