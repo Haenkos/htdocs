@@ -1,6 +1,7 @@
 <?php
     function userAuthentication($userEmail, $userPassword) {
         $user = getUser($userEmail);
+        
         if (!isset($user)) {
             return -1;
         } elseif (strcmp($userPassword, $user["userPassword"]) != 0) {

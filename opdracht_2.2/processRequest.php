@@ -10,6 +10,7 @@
                     $page = 'thanks'; //TODO: add 'thanks' page from contact
                 }
                 break;
+
             case 'registration':
                 $data = validateRegistrationForm();
                 if ($data['valid']) {
@@ -23,7 +24,9 @@
                 break;
 
         }
+
         $data['page'] = $page;
+        
         return $data;
     }
 
