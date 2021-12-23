@@ -4,12 +4,12 @@
                 <form action="index.php" method="post">
                     <input type="hidden" id="page" name="page" value="login">
 
-                    <label for="userEmail">Email:
-                        <input type="text" id="userEmail" name="userEmail" value="'.$data["userEmail"].'"> <span class="error">'.$data["userEmailError"].'</span>
+                    <label for="loginEmail">Email:
+                        <input type="text" id="loginEmail" name="loginEmail" value="'.$data["loginEmail"].'"> <span class="error">'.$data["loginEmailError"].'</span>
                     </label><br>
 
-                    <label for="password">Password:
-                        <input type="text" id="password" name="password" value="'.$data["password"].'"> <span class="error">'.$data["passwordError"].'</span>
+                    <label for="loginPassword">Password:
+                        <input type="text" id="loginPassword" name="loginPassword" value="'.$data["loginPassword"].'"> <span class="error">'.$data["loginPasswordError"].'</span>
                     </label><br>
 
                     <label for="submit">

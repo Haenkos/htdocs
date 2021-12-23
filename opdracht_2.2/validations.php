@@ -169,7 +169,27 @@
     function validateLoginForm() {
         $data = array (
             "loginEmail" => "",
-            "loginPassword" => ""
+            "loginPassword" => "",
+            "errors" => array(
+                "loginEmailError" => "",
+                "loginPasswordError" => ""
+            )
         );
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(empty($_POST['loginEmail'])) {
+                $data['errors']['loginEmailError'] = "Please provide email";
+            } else {
+                $data['loginEmail'] = formatInput($_POST['loginEmail']);
+
+                if (!filter_var($data['loginEmail'], FILTER_VALIDATE_EMAIL)) {
+                    $data['errors']['loginEmailError'] = "Geen valide e-mail adres"; 
+                }
+            }
+
+            if (isset($_POST['loginPassword'])) {
+                $data['errors']['loginPasswordError'] =
+            }
+        }
     }
 ?>
