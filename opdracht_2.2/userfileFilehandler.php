@@ -1,21 +1,23 @@
 <?php
     function getUser($email) {
         //$file = fopen("users\users.txt", "r") or die ("File not found/unable to open file!");
-        $usersDataArray = file("users\users.txt");
-        echo '<pre> UsersdataArray:'.PHP_EOL; print_r($usersDataArray); echo '</pre>';
+        if (file_exists("users\users.txt")) {
+            $usersDataArray = file("users\users.txt");
+            //echo '<pre> UsersdataArray:'.PHP_EOL; print_r($usersDataArray); echo '</pre>';
 
-        for ($i = 1; $i < count($usersDataArray); $i += 1) {
-            $userEntry = explode(",", $usersDataArray[$i]);
-            echo '<pre>UserEntry: '.$i.PHP_EOL; print_r($userEntry); echo '</pre>';
+            for ($i = 1; $i < count($usersDataArray); $i += 1) {
+                $userEntry = explode(",", $usersDataArray[$i]);
+                //echo '<pre>UserEntry: '.$i.PHP_EOL; print_r($userEntry); echo '</pre>';
 
-            if (strcmp($userEntry[1], $email) == 0) {
-                $userEntry = makeAssociative($userEntry);
-                return $userEntry; //TODO: make this a associative array
-                break;
-            } else {
-                continue;
+                if (strcmp($userEntry[1], $email) == 0) {
+                    $userEntry = makeAssociative($userEntry);
+                    return $userEntry;
+                    break;
+                } else {
+                    continue;
+                }
             }
-        }
+    }
         
         return NULL;
     }

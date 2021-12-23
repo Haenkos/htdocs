@@ -165,4 +165,11 @@
 
         return $data;
     }
+
+    function validateLoginForm() {
+        $data = array (
+            "loginEmail" => "",
+            "loginPassword" => ""
+        );
+    }
 ?>

@@ -1,6 +1,7 @@
 <?php
     require_once 'validations.php';
     require_once 'userService.php';
+    require_once 'sessionManager.php';
     
     function processRequest($page) {
         switch ($page) {
@@ -14,7 +15,7 @@
             case 'registration':
                 $data = validateRegistrationForm();
                 if ($data['valid']) {
-                    if(doesUserExist($data['userEmail'])) { 
+                    if(!doesUserExist($data['userEmail'])) { 
                         saveUser($data['userName'], $data['userEmail'], $data['userPassword']);
                         $page = 'login';
                     } else {

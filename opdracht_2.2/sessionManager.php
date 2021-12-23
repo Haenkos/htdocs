@@ -1,12 +1,16 @@
 <?php
 // https://www.phptutorial.net/php-tutorial/php-session/
+
+require_once 'userService.php';
+require_once 'userfileFilehandler.php';
+
 function loginUser($email, $password) {
     $user = getUser($email);
     if (!$user) {
         return NULL;
     } elseif (strcmp($password, $user['userPassword']) == 0) {
         session_start();
-        //fill $_session with some info
+        $_SESSION = $user;
     } else {
         return "wrongpassword";
     }

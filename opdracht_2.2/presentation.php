@@ -121,7 +121,8 @@
         echo '<div>
                 <pre>$_GET: '; var_dump($_GET); echo '</pre>
                 <pre>$_POST: '; var_dump($_POST); echo '</pre>
-                <pre>$data: '; var_dump($data); echo '</pre>
-            </div>';
+                <pre>$data: '; var_dump($data); echo '</pre>';
+                if (isset($_SESSION)) {echo '<pre>$_SESSION: '; var_dump($_SESSION);}
+            echo '</div>';
     }
 ?>
