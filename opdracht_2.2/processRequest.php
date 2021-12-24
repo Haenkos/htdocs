@@ -24,6 +24,9 @@
                 }
                 break;
 
+            case 'login':
+                $data = validateLoginForm();
+                break;
         }
 
         $data['page'] = $page;

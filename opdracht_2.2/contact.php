@@ -1,5 +1,6 @@
 <?php
-    
+    require_once 'page_request_handler.php';
+
     define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
     define('COM_PREFS', array("email" => "email", "phone" => "phone"));
 
@@ -19,21 +20,21 @@
                 <label for="gender">
                     <select id="gender" name="gender">'; 
                       generateOptions(GENDERS);
-                echo '</select> <span class="error">'.$data["genderError"].'</span>
+                echo '</select> <span class="error">'.getArrayVar($data['errors'], "genderError").'</span>
                 </label><br>
             </div>
 
             <div>
                 <label for="name">Naam:
-                    <input type="text" id="name" name="name" value="'.$data["name"].'"> <span class="error">'.$data["nameError"].'</span>
+                    <input type="text" id="name" name="name" value="'.getArrayVar($data, "name").'"> <span class="error">'.getArrayVar($data['errors'], "nameError").'</span>
                 </label><br>
             
                 <label for="email">Email:
-                    <input type="text" id="email" name="email" value="'.$data["email"].'"> <span class="error">'.$data["emailError"].'</span>
+                    <input type="text" id="email" name="email" value="'.getArrayVar($data, "email").'"> <span class="error">'.getArrayVar($data['errors'], "emailError").'</span>
                 </label><br>
             
                 <label for="phone">Telefoon:
-                    <input type="text" id="phone" name="phone" value="'.$data["phone"].'"> <span class="error">'.$data["phoneError"].'</span>
+                    <input type="text" id="phone" name="phone" value="'.getArrayVar($data, "phone").'"> <span class="error">'.getArrayVar($data['errors'], "phoneError").'</span>
                 </label><br>
             </div>
 
@@ -51,7 +52,7 @@
                 <label for="radio_phone">
                     Phone<input type="radio" id="radio_phone" name="compref" value="'.COM_PREFS["phone"].'"';
                     if(isset($data['compref']) && $data['compref']==COM_PREFS["phone"]) echo "checked";
-                    echo '> <span class="error">'.$data['comprefError'].'</span>
+                    echo '> <span class="error">'.getArrayVar($data['errors'], "comprefError").'</span>
                 </label><br>
             </div>
             
@@ -59,7 +60,7 @@
                 <textarea id="message" name="message" rows="10" cols="57" placeholder="Typ hier je bericht...">';
                 if (isset($data['message'])) echo $data['message'];
                 echo '</textarea><br>
-                <span class="error">'.$data["messageError"].'</span>
+                <span class="error">'.getArrayVar($data['errors'], "messageError").'</span>
             </label><br>
             
             

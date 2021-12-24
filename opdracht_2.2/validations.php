@@ -17,13 +17,7 @@
             "phone" => "",
             "compref" => "",
             "message" => "",
-            "valid" => false,
-            "genderError" => "",
-            "nameError" => "",
-            "emailError" => "",
-            "phoneError" => "",
-            "comprefError" => "",
-            "messageError" => ""
+            "errors" => array()
         );
 
         
@@ -55,7 +49,7 @@
                 $data['email'] = formatInput($_POST["email"]);
         
                 if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-                    $data['emailError'] = "Geen valide e-mail adres"; 
+                    $data['errors']['emailError'] = "Geen valide e-mail adres"; 
                 }
             }
         
@@ -81,13 +75,7 @@
                 $data['message'] = formatInput($_POST["message"]); 
             }
         
-            if (
-                empty($data['nameError']) &&
-                empty($data['emailError']) &&
-                empty($data['phoneError']) &&
-                empty($data['comprefError']) &&
-                empty($data['messageError'])
-                ) {
+            if (empty($data['errors'])) {
                 $data['valid'] = true;
             }
         }
@@ -96,17 +84,7 @@
 
     function validateRegistrationForm() {
         $data = array(
-            "userName" => "",
-            "userEmail" => "",
-            "userPassword" => "",
-            "checkPassword" => "",
-            "valid" => false,
-            "errors" => array(
-                "userNameError" => "",
-                "userEmailError" => "",
-                "userPasswordError" => "",
-                "checkPasswordError" => ""
-            )
+            "errors" => array()
         );
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -153,12 +131,7 @@
                 }
             }
 
-            if (
-                empty($data['errors']['userNameError']) &&
-                empty($data['errors']['userEmailError']) &&
-                empty($data['errors']['userPasswordError']) &&
-                empty($data['errors']['checkPasswordError'])
-                ) {
+            if (empty($data['errors'])) {
                 $data['valid'] = true;
             }
         }
@@ -167,13 +140,8 @@
     }
 
     function validateLoginForm() {
-        $data = array (
-            "loginEmail" => "",
-            "loginPassword" => "",
-            "errors" => array(
-                "loginEmailError" => "",
-                "loginPasswordError" => ""
-            )
+        $data = array(
+            "errors" => array()
         );
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -183,13 +151,21 @@
                 $data['loginEmail'] = formatInput($_POST['loginEmail']);
 
                 if (!filter_var($data['loginEmail'], FILTER_VALIDATE_EMAIL)) {
-                    $data['errors']['loginEmailError'] = "Geen valide e-mail adres"; 
+                    $data['errors']['loginEmailError'] = "Geen valide e-mail adres";
                 }
             }
 
-            if (isset($_POST['loginPassword'])) {
-                $data['errors']['loginPasswordError'] =
+            if (empty($_POST['loginPassword'])) {
+                $data['errors']['loginPasswordError'] = "Please provide your password";
+            } else {
+                $data['loginPassword'] = formatInput($_POST['loginPassword']);
+            }
+
+            if (empty($data['errors'])) {
+                $data['valid'] = true;
             }
         }
-    }
+
+        return $data;
+    }   
 ?>

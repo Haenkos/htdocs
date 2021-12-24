@@ -1,2 +1,6 @@
 [email][username][password]
 Matthijs,Matthijs@thuis.nl,wachtwoord
+Matthijs,frits@thuis.nl,wachtwoord
+Matthijs,hans@thuis.nl,wachtwoord
+kees,kees@mail.nl,wachtwoord
+hans,hans@mail.nl,wachtwoord
