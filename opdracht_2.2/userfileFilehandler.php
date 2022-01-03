@@ -1,4 +1,7 @@
 <?php
+
+    require_once 'debug.php';
+
     function getUser($email) {
         //$file = fopen("users\users.txt", "r") or die ("File not found/unable to open file!");
         if (file_exists("users\users.txt")) {
@@ -11,6 +14,10 @@
 
                 if (strcmp($userEntry[1], $email) == 0) {
                     $userEntry = makeAssociative($userEntry);
+                    $userEntry['userPassword'] = trim($userEntry['userPassword']);
+
+                    //console_log($userEntry);
+
                     return $userEntry;
                     break;
                 } else {

@@ -17,6 +17,7 @@
             "phone" => "",
             "compref" => "",
             "message" => "",
+            "valid" => false,
             "errors" => array()
         );
 
@@ -29,22 +30,22 @@
                     $data['gender'] = $_POST['gender'];
                 }
             } else {
-                $data['genderError'] = "Kies aanhef"; 
+                $data['errors']['genderError'] = "Kies aanhef"; 
             }
         
             if (isset($_POST["name"])) {
                 $data['name'] = formatInput($_POST["name"]);
 
                 if (empty($data['name'])) {
-                    $data['nameError'] = "Naam invullen a.u.b."; 
+                    $data['errors']['nameError'] = "Naam invullen a.u.b."; 
                 }
             } else {
-                $data['nameError'] = "Naam invullen a.u.b.";
+                $data['errors']['nameError'] = "Naam invullen a.u.b.";
                 
             }
         
             if (empty($_POST["email"])) {
-                $data['emailError'] = "Email invullen a.u.b.";
+                $data['errors']['emailError'] = "Email invullen a.u.b.";
             } else {
                 $data['email'] = formatInput($_POST["email"]);
         
@@ -54,23 +55,23 @@
             }
         
             if (empty($_POST["phone"])) {
-                $data['phoneError'] = "Telefoonnummer invullen a.u.b.";
+                $data['errors']['phoneError'] = "Telefoonnummer invullen a.u.b.";
             } else {
                 $data['phone'] = formatInput($_POST["phone"]);
         
                 if (!preg_match("/^[0-9--]*$/",$data['phone'])) {
-                    $data['phoneError'] = "alleen cijfers en '-' gebruiken a.u.b.";
+                    $data['errors']['phoneError'] = "alleen cijfers en '-' gebruiken a.u.b.";
                 }
             }
         
             if (isset($_POST["compref"]) && array_key_exists($_POST["compref"], COM_PREFS)) {
                 $data['compref'] = formatInput($_POST["compref"]); 
             } else {
-                $data['comprefError'] = "Geef a.u.b. aan of u liever gebeld of gemaild wil worden.";
+                $data['errors']['comprefError'] = "Geef a.u.b. aan of u liever gebeld of gemaild wil worden.";
             }
         
             if (empty($_POST["message"])) {
-                $data['messageError'] = "Typ a.u.b. een bericht, lege berichten worden genegeerd.";
+                $data['errors']['messageError'] = "Typ a.u.b. een bericht, lege berichten worden genegeerd.";
             } else {
                 $data['message'] = formatInput($_POST["message"]); 
             }
@@ -84,6 +85,7 @@
 
     function validateRegistrationForm() {
         $data = array(
+            "valid" => false,
             "errors" => array()
         );
 
@@ -141,6 +143,7 @@
 
     function validateLoginForm() {
         $data = array(
+            "valid" => false,
             "errors" => array()
         );
 

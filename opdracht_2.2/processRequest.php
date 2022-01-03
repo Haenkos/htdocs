@@ -26,6 +26,22 @@
 
             case 'login':
                 $data = validateLoginForm();
+                if ($data['valid']) {
+                    $userLog = loginUser($data['loginEmail'], $data['loginPassword']);
+                
+                    if ($userLog == 2) {
+                        $data['errors']['loginPasswordError'] = "Wrong password";
+                    } elseif ($userLog == 1) {
+                        $data['errors']['loginEmailError'] = "email/user does not exist";
+                    } else {
+                        $page = 'home';
+                    }
+                }
+                break;
+
+            case 'logout':
+                logOutUser();
+                $page = 'home';
                 break;
         }
 

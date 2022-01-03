@@ -7,12 +7,13 @@ require_once 'userfileFilehandler.php';
 function loginUser($email, $password) {
     $user = getUser($email);
     if (!$user) {
-        return NULL;
+        return 1;
     } elseif (strcmp($password, $user['userPassword']) == 0) {
-        session_start();
         $_SESSION = $user;
+        return 0;
     } else {
-        return "wrongpassword";
+        //this means wrong password
+        return 2;
     }
 }
 
