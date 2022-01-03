@@ -1,0 +1,4 @@
+[email][username][password]
+Fred,fred@email.com,123
+Hans,hans@worst.nl,456
+Flip,flip@po.nl,789
