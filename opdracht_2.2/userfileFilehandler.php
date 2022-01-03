@@ -35,6 +35,7 @@
 
         if (!file_exists("users\users.txt")) {
 
+            mkdir('users');
             $file = fopen("users\users.txt", "w");
             fwrite($file, "[email][username][password]".PHP_EOL);
             fwrite($file, $userdataString.PHP_EOL);
