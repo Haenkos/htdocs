@@ -1,6 +1,6 @@
 <?php
 
-require_once 'userfileFilehandler.php';
+require_once 'io/userfileFilehandler.php';
 
     function userAuthentication($userEmail, $userPassword) {
         $user = getUser($userEmail);

@@ -1,11 +1,11 @@
 <?php
     function showLoginForm($data) {
         echo '<div>
-                <form action="index.php" method="post">
+                <form action="/webshop/index.php" method="post">
                     <input type="hidden" id="page" name="page" value="login">
 
                     <label for="loginEmail">Email:
-                        <input type="text" id="loginEmail" name="loginEmail" value="'.getArrayVar($data, "loginEmail").'"> <span class="error">'.getArrayVar($data['errors'], "loginEmailError").'</span>
+                        <input type="text" id="loginEmail" name="loginEmail" value="' .getArrayVar($data, "loginEmail").'"> <span class="error">'.getArrayVar($data['errors'], "loginEmailError").'</span>
                     </label><br>
 
                     <label for="loginPassword">Password:

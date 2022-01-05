@@ -1,11 +1,11 @@
 <?php
     function showRegistrationForm($data) {
         echo '<div>
-                <form action="index.php" method="post">
+                <form action="/webshop/index.php" method="post">
                     <input type="hidden" id="page" name="page" value="registration">
 
                     <label for="userName">Username:
-                        <input type="text" id="userName" name="userName" value="'.getArrayVar($data, "userName").'"> <span class="error">'.getArrayVar($data['errors'], "userNameError").'</span>
+                        <input type="text" id="userName" name="userName" value="' .getArrayVar($data, "userName").'"> <span class="error">'.getArrayVar($data['errors'], "userNameError").'</span>
                     </label><br>
 
                     <label for="userEmail">Email:

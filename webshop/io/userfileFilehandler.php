@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'debug.php';
+    require_once 'tools/debug.php';
 
     function getUser($email) {
         $link = openDatabase();

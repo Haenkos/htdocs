@@ -13,8 +13,8 @@
     
     function showHeadSection() { 
       echo '<head>
-                <title>Opdracht 3.1</title>
-                <link rel="stylesheet" type="text/css" href="css/styles.css">
+                <title>Webshop</title>
+                <link rel="stylesheet" type="text/css" href="/webshop/css/styles.css">
             </head>';
     } 
     
@@ -23,7 +23,7 @@
        debugData($data);
        showHeader($data['page']);
        showMenu(); 
-       showContent($data); 
+       showContent($data);
        showFooter(); 
        echo '    </body>' . PHP_EOL; 
     } 
@@ -43,13 +43,13 @@
       echo '<nav class="nav_menu">
                 <ul>
                     <li>
-                        <a href="index.php">Home</a>
+                        <a href="/webshop/index.php">Home</a>
                     </li>
                     <li>
-                        <a href="index.php?page=about">About</a>
+                        <a href="/webshop/index.php?page=about">About</a>
                     </li>
                     <li>
-                        <a href="index.php?page=contact">Contact</a>
+                        <a href="/webshop/index.php?page=contact">Contact</a>
                     </li>
                 </ul>
             </nav>';
@@ -58,10 +58,10 @@
                 echo '<nav class="session_menu">
                     <ul>
                         <li>
-                            <a href="index.php?page=login">Login</a>
+                            <a href="/webshop/index.php?page=login">Login</a>
                         </li>
                         <li>
-                            <a href="index.php?page=registration">Register</a>
+                            <a href="/webshop/index.php?page=registration">Register</a>
                         </li>
                     </ul>
                 </nav>';
@@ -69,7 +69,7 @@
                 echo '<nav class="session_menu">
                 <ul>
                     <li>
-                        <a href="index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
+                        <a href="/webshop/index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
                     </li>
                 </ul>
             </nav>';
@@ -81,26 +81,26 @@
        switch ($data['page']) 
        { 
             case 'home':
-                require_once('presentation/home.php');
+                require_once('home.php');
                 showHomeContent();
                 break;
             case 'about':
-                require_once('presentation/about.php');
+                require_once('about.php');
                 showAboutContent();
                 break;
             case 'contact':
-                require_once('presentation/contact.php');
+                require_once('contact.php');
                 showContactForm($data);
                 break;
             case 'thanks':
                 showContactThanks($data);
                 break;
             case 'login':
-                require_once('presentation/login.php');
+                require_once('login.php');
                 showLoginForm($data);
                 break;
             case 'registration':
-                require_once('presentation/registration.php');
+                require_once('registration.php');
                 showRegistrationForm($data);
                 break;
        }     

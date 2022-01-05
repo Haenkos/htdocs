@@ -1,9 +1,9 @@
 <?php
     session_start();
     
-    require_once 'page_request_handler.php';
-    require_once 'presentation.php';
-    require_once 'processRequest.php';
+    require_once 'io/page_request_handler.php';
+    require_once 'presentation/presentation.php';
+    require_once 'services/processRequest.php';
 
 $page = getRequestedPage();
 

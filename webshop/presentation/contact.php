@@ -1,5 +1,5 @@
 <?php
-    require_once 'page_request_handler.php';
+    require_once 'io/page_request_handler.php';
 
     define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
     define('COM_PREFS', array("email" => "email", "phone" => "phone"));
@@ -12,7 +12,7 @@
 
     function showContactForm($data) {
         echo '<div class="contact_form">
-        <form action= "index.php" method="post">
+        <form action= "/webshop/index.php" method="post">
 
             <input type="hidden" id="page" name="page" value="contact">
 

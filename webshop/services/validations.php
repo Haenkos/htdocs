@@ -1,5 +1,5 @@
 <?php
-    require_once 'contact.php';
+    require_once 'presentation/contact.php';
 
     function formatInput($input) {
         $input = trim($input);

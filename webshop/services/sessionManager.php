@@ -2,7 +2,7 @@
 // https://www.phptutorial.net/php-tutorial/php-session/
 
 require_once 'userService.php';
-require_once 'userfileFilehandler.php';
+require_once 'io/userfileFilehandler.php';
 
 function loginUser($email, $password) {
     $user = getUser($email);
