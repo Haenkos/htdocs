@@ -2,6 +2,7 @@
     require_once 'validations.php';
     require_once 'userService.php';
     require_once 'sessionManager.php';
+    require_once 'io/productsIO.php';
     
     function processRequest($page) {
         switch ($page) {
@@ -42,6 +43,11 @@
             case 'logout':
                 logOutUser();
                 $page = 'home';
+                break;
+
+            case 'webshop':
+                //processActions();
+                $data['productsList'] = getProductsFromDb();
                 break;
         }
 

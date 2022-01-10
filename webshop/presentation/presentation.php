@@ -103,6 +103,48 @@
                 require_once('registration.php');
                 showRegistrationForm($data);
                 break;
+            case 'webshop':
+                require_once('webshop.php');
+                /*
+                $productList = array(
+                        array(
+                            "productID" => 10,
+                            "productImg" => "/webshop/img/sl_ring_goud.jpg",
+                            "productName" => "Sleutelbosring Goud",
+                            "productColour" => "Goud",
+                            "productPrice" => 1000
+                        ),
+                        array(
+                            "productID" => 11,
+                            "productImg" => "/webshop/img/sl_ring_messing.jpg",
+                            "productName" => "Sleutelbosring Octarine",
+                            "productColour" => "Octarine",
+                            "productPrice" => "1 million cabbages"
+                        ),
+                        array(
+                            "productID" => 12,
+                            "productImg" => "/webshop/img/sl_ring_zwart.jpg",
+                            "productName" => "Sleutelbosring Bruin",
+                            "productColour" => "Bruin",
+                            "productPrice" => -10
+                        ),
+                        array(
+                            "productID" => 13,
+                            "productImg" => "/webshop/img/sl_ring_zwart.jpg",
+                            "productName" => "Sleutelbosring Bruin",
+                            "productColour" => "Bruin",
+                            "productPrice" => -10
+                        ),
+                        array(
+                            "productID" => 14,
+                            "productImg" => "/webshop/img/sl_ring_zwart.jpg",
+                            "productName" => "Sleutelbosring Bruin",
+                            "productColour" => "Bruin",
+                            "productPrice" => -10
+                        )
+                    );*/
+                showWebshopContent($data['productsList']); //hier straks $data['productList'] meegeven
+                break;
        }     
     } 
     

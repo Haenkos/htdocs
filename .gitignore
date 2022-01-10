@@ -2,3 +2,5 @@ bac
 *.zip
 *.bak
 *commentaar
+*.drawio
+*.csv
