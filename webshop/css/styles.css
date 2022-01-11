@@ -69,15 +69,28 @@ nav ul li a.active { /* TODO: fix active page link colour */
     border-color: rgb(3, 252, 194)
 }
 
+.productpage {
+    font-size: 14px;
+}
+
+.productpage ul {
+    list-style-type: none;
+}
+
 .webshop {
     display: grid;
     grid-template-columns: 200px 200px 200px 200px;
     grid-template-rows: 200px 200px 200px 200px;
+    /*text-decoration: none;*/
+}
+
+.productcard a {
     text-decoration: none;
+    color: rgb(68, 68, 68);
 }
 
 .productcard ul li {
-    text-decoration: none;
+    /*text-decoration: none;*/
     display: block;
 }
 

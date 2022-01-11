@@ -46,6 +46,9 @@
                         <a href="/webshop/index.php">Home</a>
                     </li>
                     <li>
+                        <a href="/webshop/index.php?page=webshop">Webshop</a>
+                    </li>
+                    <li>
                         <a href="/webshop/index.php?page=about">About</a>
                     </li>
                     <li>
@@ -54,7 +57,7 @@
                 </ul>
             </nav>';
 
-            if (empty($_SESSION)) {
+            if (empty($_SESSION['userName'])) {
                 echo '<nav class="session_menu">
                     <ul>
                         <li>
@@ -63,6 +66,9 @@
                         <li>
                             <a href="/webshop/index.php?page=registration">Register</a>
                         </li>
+                        <li>
+                            <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                        </li>
                     </ul>
                 </nav>';
             } else {
@@ -70,6 +76,9 @@
                 <ul>
                     <li>
                         <a href="/webshop/index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
+                    </li>
+                    <li>
+                        <a href="/webshop/index.php?page=cart">Winkelwagen</a>
                     </li>
                 </ul>
             </nav>';
@@ -105,45 +114,15 @@
                 break;
             case 'webshop':
                 require_once('webshop.php');
-                /*
-                $productList = array(
-                        array(
-                            "productID" => 10,
-                            "productImg" => "/webshop/img/sl_ring_goud.jpg",
-                            "productName" => "Sleutelbosring Goud",
-                            "productColour" => "Goud",
-                            "productPrice" => 1000
-                        ),
-                        array(
-                            "productID" => 11,
-                            "productImg" => "/webshop/img/sl_ring_messing.jpg",
-                            "productName" => "Sleutelbosring Octarine",
-                            "productColour" => "Octarine",
-                            "productPrice" => "1 million cabbages"
-                        ),
-                        array(
-                            "productID" => 12,
-                            "productImg" => "/webshop/img/sl_ring_zwart.jpg",
-                            "productName" => "Sleutelbosring Bruin",
-                            "productColour" => "Bruin",
-                            "productPrice" => -10
-                        ),
-                        array(
-                            "productID" => 13,
-                            "productImg" => "/webshop/img/sl_ring_zwart.jpg",
-                            "productName" => "Sleutelbosring Bruin",
-                            "productColour" => "Bruin",
-                            "productPrice" => -10
-                        ),
-                        array(
-                            "productID" => 14,
-                            "productImg" => "/webshop/img/sl_ring_zwart.jpg",
-                            "productName" => "Sleutelbosring Bruin",
-                            "productColour" => "Bruin",
-                            "productPrice" => -10
-                        )
-                    );*/
-                showWebshopContent($data['productsList']); //hier straks $data['productList'] meegeven
+                showWebshopContent($data['productsList']);
+                break;
+            case 'productPage':
+                require_once('webshop.php');
+                showProductPage($data['product']);
+                break;
+            case 'cart':
+                require_once('webshop.php');
+                showShoppingCart($_SESSION['cart'], $data['productsList']);
                 break;
        }     
     } 

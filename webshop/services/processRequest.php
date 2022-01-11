@@ -3,8 +3,14 @@
     require_once 'userService.php';
     require_once 'sessionManager.php';
     require_once 'io/productsIO.php';
+    require_once 'actions.php';
     
     function processRequest($page) {
+
+        if (isset($_GET['action'])) {
+            processActions();
+        }
+
         switch ($page) {
             case 'contact':
                 $data = validateContactForm();
@@ -47,7 +53,15 @@
 
             case 'webshop':
                 //processActions();
-                $data['productsList'] = getProductsFromDb();
+                $data['productsList'] = getAllProducts();
+                break;
+
+            case 'productPage':
+                $data['product'] = getProductByID($_GET['ID']);
+                break;
+
+            case 'cart':
+                $data['productsList'] = getAllProducts();
                 break;
         }
 
