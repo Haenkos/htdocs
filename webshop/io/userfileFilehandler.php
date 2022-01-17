@@ -38,6 +38,28 @@
         }
     }
 
+    function getUserID($userName) {
+        $link = openDatabase();
+
+        $query = "SELECT userID FROM users WHERE userName='$userName'";
+
+        if($link) {
+            $queryResult = mysqli_query($link, $query);
+        } else {
+            throw new Exception('Error retrieving data from Database' . PHP_EOL);
+        }
+
+        if(!empty($queryResult)) {
+            $queryResult = mysqli_fetch_row($queryResult);
+            $queryResult = implode($queryResult);
+            console_log('getUserID queryresult: '.$queryResult);
+            return $queryResult;
+        } else {
+            console_log('getUserID returns Null');
+            return NULL;
+        }
+    }
+
     function openDatabase () {
         $connection = mysqli_connect('127.0.0.1', 'haenkos', 'haenkos', 'haenkos_database');
 

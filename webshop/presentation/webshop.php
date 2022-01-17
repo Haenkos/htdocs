@@ -49,7 +49,7 @@ function showProductPage($product) {
                 <li>prijs: '.$product["productPrice"].'</li>
                 <div>
                     <form action="/webshop/index.php" method="GET">
-                        <input type="hidden" name="page" value="productpage">
+                        <input type="hidden" name="page" value="productPage">
                         <input type="hidden" name="ID" value="'.$product["productID"].'">
                         <input type="hidden" name="action" value="addToCart">
                         <input type="hidden" name="cartItemID" value="'.$product["productID"].'">
@@ -65,8 +65,10 @@ function showProductPage($product) {
             </div>';
 }
 
-function showShoppingCart($cart, $productList) {
-    if (empty($_SESSION['cart'])) {
+function showShoppingCart($productList) {
+    $cart = getCart();
+
+    if (!$cart) {
         echo '<div>
             <p>Shopping cart is empty!</p>
         </div>';
@@ -74,14 +76,23 @@ function showShoppingCart($cart, $productList) {
         echo '<div class="shoppingcart">';
 
         foreach ($productList as $product) {
-            if (in_array($product['productID'], $cart)) {
+            if (array_key_exists($product['productID'], $cart)) {
             echo '<div class="productcard">';
                 showCartCard($product);
+            echo 'aantal: '.$cart[$product['productID']];
             echo '</div>';
             }
         }
 
         echo '</div>';
+
+        echo '<br><div>
+                <form action="/webshop/index.php" method="GET">
+                    <input type="hidden" name="page" value="cart">
+                    <input type="hidden" name="action" value="checkout">
+                    <button type=submit>Checkout</button>
+                </form>
+            </div>';
     }
 }
 ?>

@@ -8,14 +8,14 @@
     function processRequest($page) {
 
         if (isset($_GET['action'])) {
-            processActions();
+            $page = processActions();
         }
 
         switch ($page) {
             case 'contact':
                 $data = validateContactForm();
                 if ($data['valid']) {
-                    $page = 'thanks'; //TODO: add 'thanks' page from contact
+                    $page = 'thanks';
                 }
                 break;
 
@@ -52,14 +52,13 @@
                 break;
 
             case 'webshop':
-                //processActions();
                 $data['productsList'] = getAllProducts();
                 break;
-
+                
             case 'productPage':
                 $data['product'] = getProductByID($_GET['ID']);
                 break;
-
+                
             case 'cart':
                 $data['productsList'] = getAllProducts();
                 break;

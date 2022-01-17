@@ -122,7 +122,7 @@
                 break;
             case 'cart':
                 require_once('webshop.php');
-                showShoppingCart($_SESSION['cart'], $data['productsList']);
+                showShoppingCart($data['productsList']);
                 break;
        }     
     } 
