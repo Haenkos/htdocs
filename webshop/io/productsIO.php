@@ -1,5 +1,5 @@
 <?php
-    require_once 'udatabase_acces_layer.php';
+    require_once 'database_acces_layer.php';
 
     function getAllProducts() {
         $link = openDatabase();

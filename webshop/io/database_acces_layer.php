@@ -5,36 +5,34 @@
     function getUser($email) {
         $link = openDatabase();
 
-        $query = "SELECT userName, userEmail, userPassword FROM users WHERE userEmail='$email'";
+        try {
+            $query = "SELECT userName, userEmail, userPassword FROM users WHERE userEmail='$email'";
 
-        if($link) {
             $queryResult = mysqli_query($link, $query);
-        } else {
-            throw new Exception('Error retrieving data from Database' . PHP_EOL);
-        }
 
-        if(mysqli_num_rows($queryResult) > 0) {
-            return mysqli_fetch_assoc($queryResult);
-        } else {
-            return NULL;
+            if(mysqli_num_rows($queryResult) > 0) {
+                return mysqli_fetch_assoc($queryResult);
+            } else {
+                return NULL;
+            }
+        } finally {
+            closeDatabase($link);
         }
     }
 
     function storeUser($userName, $userEmail, $userPassword) {
         $link = openDatabase();
 
-        $query = "INSERT INTO users (userName, userEmail, userPassword) 
-        VALUES ('$userName', '$userEmail', '$userPassword')";
-
-        if($link) {
+        try {
+            $query = "INSERT INTO users (userName, userEmail, userPassword) VALUES ('$userName', '$userEmail', '$userPassword')";
+        
             if (mysqli_query($link, $query)) {
                 console_log('User stored succesfully');
-                closeDatabase($link);
             } else {
                 throw new Exception('Error storing data in database' . PHP_EOL);
             }
-        } else {
-            throw new Exception('Failed to connect to database' . PHP_EOL);
+        } finally {
+            closeDatabase($link);
         }
     }
 
@@ -43,20 +41,21 @@
 
         $query = "SELECT userID FROM users WHERE userName='$userName'";
 
-        if($link) {
+        try {
             $queryResult = mysqli_query($link, $query);
-        } else {
-            throw new Exception('Error retrieving data from Database' . PHP_EOL);
-        }
 
-        if(!empty($queryResult)) {
-            $queryResult = mysqli_fetch_row($queryResult);
-            $queryResult = implode($queryResult);
-            console_log('getUserID queryresult: '.$queryResult);
-            return $queryResult;
-        } else {
-            console_log('getUserID returns Null');
-            return NULL;
+
+            if(!empty($queryResult)) {
+                $queryResult = mysqli_fetch_row($queryResult);
+                $queryResult = implode($queryResult);
+                console_log('getUserID queryresult: '.$queryResult);
+                return $queryResult;
+            } else {
+                console_log('getUserID returns Null');
+                return NULL;
+            }
+        } finally {
+            closeDatabase($link);
         }
     }
 
