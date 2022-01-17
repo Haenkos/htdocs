@@ -2,20 +2,13 @@
     require_once 'validations.php';
     require_once 'userService.php';
     require_once 'sessionManager.php';
-    require_once 'io/productsIO.php';
-    require_once 'actions.php';
     
     function processRequest($page) {
-
-        if (isset($_GET['action'])) {
-            $page = processActions();
-        }
-
         switch ($page) {
             case 'contact':
                 $data = validateContactForm();
                 if ($data['valid']) {
-                    $page = 'thanks';
+                    $page = 'thanks'; //TODO: add 'thanks' page from contact
                 }
                 break;
 
@@ -34,14 +27,15 @@
             case 'login':
                 $data = validateLoginForm();
                 if ($data['valid']) {
-                    $userLog = userAuthentication($data['loginEmail'], $data['loginPassword']);
+                    /* JH: De functie hieronder doet twee dingen, hij authoriseerd de user en zet hem in de sessie, dit zou ik in twee stappen doen */
+                    $userLog = loginUser($data['loginEmail'], $data['loginPassword']); /* JH: De opdracht was om de naam op te slaan in de sessie, niet het email adres en ZEKER niet het password */
                 
-                    if ($userLog == "Wrong password") {
+                    if ($userLog == 2 /* JH: Zie opmerking in userservice regel 9 */) {
                         $data['errors']['loginPasswordError'] = "Wrong password";
-                    } elseif ($userLog == "No user found") {
+                    } elseif ($userLog == 1) {
                         $data['errors']['loginEmailError'] = "email/user does not exist";
                     } else {
-                        loginUser($userLog);
+                        /* JH: Ik had hier een loginUser($userLog['userName']); verwacht */
                         $page = 'home';
                     }
                 }
@@ -50,18 +44,6 @@
             case 'logout':
                 logOutUser();
                 $page = 'home';
-                break;
-
-            case 'webshop':
-                $data['productsList'] = getAllProducts();
-                break;
-                
-            case 'productPage':
-                $data['product'] = getProductByID($_GET['ID']);
-                break;
-                
-            case 'cart':
-                $data['productsList'] = getAllProducts();
                 break;
         }
 

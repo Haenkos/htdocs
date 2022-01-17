@@ -2,20 +2,13 @@
     require_once 'validations.php';
     require_once 'userService.php';
     require_once 'sessionManager.php';
-    require_once 'io/productsIO.php';
-    require_once 'actions.php';
     
     function processRequest($page) {
-
-        if (isset($_GET['action'])) {
-            $page = processActions();
-        }
-
         switch ($page) {
             case 'contact':
                 $data = validateContactForm();
                 if ($data['valid']) {
-                    $page = 'thanks';
+                    $page = 'thanks'; //TODO: add 'thanks' page from contact
                 }
                 break;
 
@@ -23,6 +16,7 @@
                 $data = validateRegistrationForm();
                 if ($data['valid']) {
                     if(!doesUserExist($data['userEmail'])) { 
+                        /* JH: Mis hier een try { } catch (Exception $e) { $data['errors']['generic'] = "Door een technische storing kunnen we u niet registreren, probeer het later nogmaals"; log("Register failed" . $e->getMessage()) } */
                         saveUser($data['userName'], $data['userEmail'], $data['userPassword']);
                         $page = 'login';
                     } else {
@@ -34,14 +28,14 @@
             case 'login':
                 $data = validateLoginForm();
                 if ($data['valid']) {
-                    $userLog = userAuthentication($data['loginEmail'], $data['loginPassword']);
+                  /* JH: Mis hier een try { } catch (Exception $e) { $data['errors']['generic'] = "Door een technische storing kunnen we u niet inloggen, probeer het later nogmaals"; log("Log in failed" . $e->getMessage()) } */
+                    $userLog = loginUser($data['loginEmail'], $data['loginPassword']);
                 
-                    if ($userLog == "Wrong password") {
+                    if ($userLog == 2) {
                         $data['errors']['loginPasswordError'] = "Wrong password";
-                    } elseif ($userLog == "No user found") {
+                    } elseif ($userLog == 1) {
                         $data['errors']['loginEmailError'] = "email/user does not exist";
                     } else {
-                        loginUser($userLog);
                         $page = 'home';
                     }
                 }
@@ -50,18 +44,6 @@
             case 'logout':
                 logOutUser();
                 $page = 'home';
-                break;
-
-            case 'webshop':
-                $data['productsList'] = getAllProducts();
-                break;
-                
-            case 'productPage':
-                $data['product'] = getProductByID($_GET['ID']);
-                break;
-                
-            case 'cart':
-                $data['productsList'] = getAllProducts();
                 break;
         }
 

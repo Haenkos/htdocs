@@ -22,6 +22,8 @@ function processActions() {
                     storeOrder();
                     emptyCart();
                     $page = 'webshop';
+                    return $page;
+                    break;
                 }
         }
 

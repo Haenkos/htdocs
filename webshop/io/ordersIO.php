@@ -1,6 +1,6 @@
 <?php
 
-require_once 'userfileFilehandler.php';
+require_once 'database_acces_layer.php';
 require_once 'productsIO.php';
 require_once 'tools/debug.php';
 

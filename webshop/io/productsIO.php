@@ -1,5 +1,5 @@
 <?php
-    require_once 'userfileFilehandler.php';
+    require_once 'udatabase_acces_layer.php';
 
     function getAllProducts() {
         $link = openDatabase();

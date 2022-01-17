@@ -1,7 +1,7 @@
 <?php
-    require_once 'io/page_request_handler.php';
+    require_once 'page_request_handler.php'; /* JH: Deze is niet nodig, deze functies zijn al geladen als we validaties inladen */
 
-    define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
+    define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen")); /* JH: ik zou de defines in een separate php file zetten en die hier en in contact.php includen */
     define('COM_PREFS', array("email" => "email", "phone" => "phone"));
 
     function generateOptions($array) {
@@ -12,7 +12,7 @@
 
     function showContactForm($data) {
         echo '<div class="contact_form">
-        <form action= "/webshop/index.php" method="post">
+        <form action= "index.php" method="post">
 
             <input type="hidden" id="page" name="page" value="contact">
 
@@ -45,13 +45,13 @@
 
                 <label for="radio_email">
                     Email<input type="radio" id="radio_email" name="compref" value="'.COM_PREFS["email"].'"';
-                    if(getArrayVar($data, 'compref')=='email') echo "checked";
+                    if(isset($data['compref']) && $data['compref']==COM_PREFS["email"]) echo "checked";
                     echo '>
                 </label>
 
                 <label for="radio_phone">
                     Phone<input type="radio" id="radio_phone" name="compref" value="'.COM_PREFS["phone"].'"';
-                    if(getArrayVar($data, 'compref')=='phone') echo "checked";
+                    if(isset($data['compref']) && $data['compref']==COM_PREFS["phone"]) echo "checked";
                     echo '> <span class="error">'.getArrayVar($data['errors'], "comprefError").'</span>
                 </label><br>
             </div>

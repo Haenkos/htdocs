@@ -1,7 +1,7 @@
 <?php
-    require_once 'io/page_request_handler.php';
+    require_once 'page_request_handler.php';
 
-    define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
+    define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" /* JH TIP: Dit wordt nergens getoond, dus kan je gewoon engens houden "other", de andere worden dan ook engels "mr" en "mrs" */ => "Anders/geen"));
     define('COM_PREFS', array("email" => "email", "phone" => "phone"));
 
     function generateOptions($array) {
@@ -12,7 +12,7 @@
 
     function showContactForm($data) {
         echo '<div class="contact_form">
-        <form action= "/webshop/index.php" method="post">
+        <form action= "index.php" method="post">
 
             <input type="hidden" id="page" name="page" value="contact">
 
@@ -45,13 +45,13 @@
 
                 <label for="radio_email">
                     Email<input type="radio" id="radio_email" name="compref" value="'.COM_PREFS["email"].'"';
-                    if(getArrayVar($data, 'compref')=='email') echo "checked";
+                    if(isset($data['compref']) && $data['compref']==COM_PREFS["email"]) echo "checked";
                     echo '>
                 </label>
 
                 <label for="radio_phone">
                     Phone<input type="radio" id="radio_phone" name="compref" value="'.COM_PREFS["phone"].'"';
-                    if(getArrayVar($data, 'compref')=='phone') echo "checked";
+                    if(isset($data['compref']) && $data['compref']==COM_PREFS["phone"]) echo "checked";
                     echo '> <span class="error">'.getArrayVar($data['errors'], "comprefError").'</span>
                 </label><br>
             </div>
@@ -68,7 +68,23 @@
                 <button type="submit" id="submit">Submit</button>
             </label><br>
         </form>
-    </div>';        
+    </div>';
+    
+      /* JH: de radiobuttons voor compref kloppen niet, ik had iets verwacht als: 
+      echo '<label for="radio_email">'.PHP_EOL.COM_PREFS["email"];
+      echo '<input type="radio" id="radio_email" name="compref" value="email"';
+      if(getArrayVar($data,'compref')=="email") echo "checked";
+      echo '>'.PHP_EOL.'</label>';
+      */
+      /* JH_Extra:
+      Je kan dit nog generieker maken door bijvoorbeeld een generateRadioButtons(COM_PREF, getArrayVar($data,'compref')) aan te roepen en dan te doen: 
+      foreach($options as $rKey => $label) {
+        echo '<label for="compref_'.$rKey.'">' . PHP_EOL . $label;
+        echo '<input type="radio" id="compref_'.$rKey.'" name="compref" value="'.$rKey.'"'.
+              ($currentValue==$rKey) ? "checked" : "" . '>' . PHP_EOL;
+        echo '</label>';
+      }
+        */
     }
     
     function showContactThanks($data) {

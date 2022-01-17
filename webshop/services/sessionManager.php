@@ -2,34 +2,15 @@
 // https://www.phptutorial.net/php-tutorial/php-session/
 
 require_once 'userService.php';
-require_once 'io/userfileFilehandler.php';
+require_once 'io/database_acces_layer.php';
 require_once 'tools/debug.php';
 
-function loginUser($email, $password) {
-    $user = getUser($email);
-    if (!$user) {
-        return 1;
-    } elseif (strcmp($password, $user['userPassword']) == 0) {
-        $_SESSION['userName'] = $user['userName'];
-        $_SESSION['userEmail'] = $user['userEmail'];
-        $_SESSION['userPassword'] = $user['userPassword'];
-        return 0;
-    } else {
-        //this means wrong password
-        return 2;
-    }
-}
-
-function checkLogin($email) {
-    if (strcmp($_SESSION['userEmail'], $email) == 0) {
-        return true;
-    } else {
-        return false;
-    }
+function loginUser($userName) {
+    $_SESSION['userName'] = $userName;
 }
 
 function checkAnyLoggedIn() {
-    if (isset($_SESSION['userEmail'])) {
+    if (isset($_SESSION['userName'])) {
         console_log('Identified a user is logged in from checkAnyLoggedIn');
         return true;
     } else {

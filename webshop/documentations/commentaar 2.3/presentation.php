@@ -13,8 +13,8 @@
     
     function showHeadSection() { 
       echo '<head>
-                <title>Webshop</title>
-                <link rel="stylesheet" type="text/css" href="/webshop/css/styles.css">
+                <title>Opdracht 2.3</title>
+                <link rel="stylesheet" href="css/styles.css">
             </head>';
     } 
     
@@ -23,7 +23,7 @@
        debugData($data);
        showHeader($data['page']);
        showMenu(); 
-       showContent($data);
+       showContent($data); 
        showFooter(); 
        echo '    </body>' . PHP_EOL; 
     } 
@@ -34,7 +34,7 @@
     
     function showHeader($page) { 
         echo '<header>';
-        echo '<h1>' . ucfirst(htmlspecialchars($page)) . '</h1>';
+        echo '<h1>' . ucfirst($page) . '</h1>';
         echo '</header>';
     } 
     
@@ -43,31 +43,25 @@
       echo '<nav class="nav_menu">
                 <ul>
                     <li>
-                        <a href="/webshop/index.php">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=webshop">Webshop</a>
+                        <a href="index.php?page=about">About</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=about">About</a>
-                    </li>
-                    <li>
-                        <a href="/webshop/index.php?page=contact">Contact</a>
+                        <a href="index.php?page=contact">Contact</a>
                     </li>
                 </ul>
             </nav>';
 
-            if (empty($_SESSION['userName'])) {
+            if (empty($_SESSION)) {
                 echo '<nav class="session_menu">
                     <ul>
                         <li>
-                            <a href="/webshop/index.php?page=login">Login</a>
+                            <a href="index.php?page=login">Login</a>
                         </li>
                         <li>
-                            <a href="/webshop/index.php?page=registration">Register</a>
-                        </li>
-                        <li>
-                            <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                            <a href="index.php?page=registration">Register</a>
                         </li>
                     </ul>
                 </nav>';
@@ -75,10 +69,7 @@
                 echo '<nav class="session_menu">
                 <ul>
                     <li>
-                        <a href="/webshop/index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
-                    </li>
-                    <li>
-                        <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                        <a href="index.php?page=logout">Logout '.$_SESSION['userName'].'</a>
                     </li>
                 </ul>
             </nav>';
@@ -111,18 +102,6 @@
             case 'registration':
                 require_once('registration.php');
                 showRegistrationForm($data);
-                break;
-            case 'webshop':
-                require_once('webshop.php');
-                showWebshopContent($data['productsList']);
-                break;
-            case 'productPage':
-                require_once('webshop.php');
-                showProductPage($data['product']);
-                break;
-            case 'cart':
-                require_once('webshop.php');
-                showShoppingCart($data['productsList']);
                 break;
        }     
     } 

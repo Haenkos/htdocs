@@ -1,16 +1,16 @@
 <?php
 
-require_once 'io/database_acces_layer.php';
+require_once 'database_acces_layer.php';
 
     function userAuthentication($userEmail, $userPassword) {
         $user = getUser($userEmail);
         
         if (!isset($user)) {
-            return "No user found";
+            return -1;
         } elseif (strcmp($userPassword, $user["userPassword"]) != 0) {
-            return "Wrong password";
+            return 0;
         } else {
-            return $user['userName'];
+            return 1;
         }
     }
 
@@ -19,7 +19,7 @@ require_once 'io/database_acces_layer.php';
     }
 
     function doesUserExist($userEmail) {
-        $user = getUser($userEmail);
+        $user = getUser(($userEmail));
 
         if (isset($user)) {
             return true;
@@ -27,6 +27,4 @@ require_once 'io/database_acces_layer.php';
             return false;
         }
     }
-
-    
 ?>

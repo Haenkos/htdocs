@@ -13,8 +13,8 @@
     
     function showHeadSection() { 
       echo '<head>
-                <title>Webshop</title>
-                <link rel="stylesheet" type="text/css" href="/webshop/css/styles.css">
+                <title>Opdracht 2.2</title>
+                <link rel="stylesheet" href="css/styles.css">
             </head>';
     } 
     
@@ -23,7 +23,7 @@
        debugData($data);
        showHeader($data['page']);
        showMenu(); 
-       showContent($data);
+       showContent($data); 
        showFooter(); 
        echo '    </body>' . PHP_EOL; 
     } 
@@ -34,40 +34,36 @@
     
     function showHeader($page) { 
         echo '<header>';
-        echo '<h1>' . ucfirst(htmlspecialchars($page)) . '</h1>';
+        echo '<h1>' . ucfirst($page) /* JH: Omdat in page_request_handler de pagina niet wordt gefilterd (met formatInput) kan hier potentieel een XSS (Cross side scripting) aanval worden gedaan */ . '</h1>';
         echo '</header>';
     } 
     
     function showMenu() { 
+       /* JH Extra: Maak in processRequest achter $data['page'] = $page; een array van menu items $data['menu'] = array ('home' => 'Home', ...); if (isLoggedIn()) { $data['menu']['Logout'] = 'Log out '.getLoggedInUserName(); } else { ...} etc. 
+                dan kan je hier een simpel: foreach($data['menu'] as $link => $menuText) { showMenuItem($link, $menuText); } doen */
       echo '<div class="menus">';
       echo '<nav class="nav_menu">
                 <ul>
                     <li>
-                        <a href="/webshop/index.php">Home</a>
+                        <a href="index.php">Home</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=webshop">Webshop</a>
+                        <a href="index.php?page=about">About</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=about">About</a>
-                    </li>
-                    <li>
-                        <a href="/webshop/index.php?page=contact">Contact</a>
+                        <a href="index.php?page=contact">Contact</a>
                     </li>
                 </ul>
             </nav>';
 
-            if (empty($_SESSION['userName'])) {
+            if (empty($_SESSION)) {
                 echo '<nav class="session_menu">
                     <ul>
                         <li>
-                            <a href="/webshop/index.php?page=login">Login</a>
+                            <a href="index.php?page=login">Login</a>
                         </li>
                         <li>
-                            <a href="/webshop/index.php?page=registration">Register</a>
-                        </li>
-                        <li>
-                            <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                            <a href="index.php?page=registration">Register</a>
                         </li>
                     </ul>
                 </nav>';
@@ -75,14 +71,12 @@
                 echo '<nav class="session_menu">
                 <ul>
                     <li>
-                        <a href="/webshop/index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
-                    </li>
-                    <li>
-                        <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                        <a href="index.php?page=logout">Logout '.$_SESSION['userName'].'</a>
                     </li>
                 </ul>
             </nav>';
             }
+        /* JH TIP: Maak een showMenuItem($link, $text) functie die het <li> ...</li> deel neerzet */
         echo '</div>';
     } 
     
@@ -111,18 +105,6 @@
             case 'registration':
                 require_once('registration.php');
                 showRegistrationForm($data);
-                break;
-            case 'webshop':
-                require_once('webshop.php');
-                showWebshopContent($data['productsList']);
-                break;
-            case 'productPage':
-                require_once('webshop.php');
-                showProductPage($data['product']);
-                break;
-            case 'cart':
-                require_once('webshop.php');
-                showShoppingCart($data['productsList']);
                 break;
        }     
     } 
