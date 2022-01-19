@@ -12,9 +12,9 @@ function showWebshopContent($productList) {
 }
 
 function showProductCard($product) {
-    echo    '<a href=/webshop/index.php?page=productPage&ID='.$product['productID'].'>
+    echo    '<a href=/index.php?page=productPage&ID='.$product['productID'].'>
             <ul>
-                <li><img src="/webshop/img/'.$product["imageID"].'.jpg" alt="'.$product["productName"].'" height="100"></li>
+                <li><img src="/img/'.$product["imageID"].'.jpg" alt="'.$product["productName"].'" height="100"></li>
                 <li><b>'.$product["productName"].'</b></li>
                 <li>kleur: '.$product["productColour"].'</li>
                 <li>prijs: '.$product["productPrice"].'</li>
@@ -22,7 +22,7 @@ function showProductCard($product) {
             </a>
             <ul>
                 <li>
-                    <form action="/webshop/index.php" method="GET">
+                    <form action="index.php" method="GET">
                         <input type="hidden" name="page" value="webshop">
                         <input type="hidden" name="action" value="addToCart">
                         <input type="hidden" name="cartItemID" value="'.$product["productID"].'">
@@ -44,11 +44,11 @@ function showCartCard($product) {
 function showProductPage($product) {
     echo    '<div class="productpage">
             <ul>
-                <li><img src="/webshop/img/'.$product["imageID"].'.jpg" alt="'.$product["productName"].'" height="300"></li>
+                <li><img src="/img/'.$product["imageID"].'.jpg" alt="'.$product["productName"].'" height="300"></li>
                 <li>
                 <li>prijs: '.$product["productPrice"].'</li>
                 <div>
-                    <form action="/webshop/index.php" method="GET">
+                    <form action="/index.php" method="GET">
                         <input type="hidden" name="page" value="productPage">
                         <input type="hidden" name="ID" value="'.$product["productID"].'">
                         <input type="hidden" name="action" value="addToCart">
@@ -87,7 +87,7 @@ function showShoppingCart($productList) {
         echo '</div>';
 
         echo '<br><div>
-                <form action="/webshop/index.php" method="GET">
+                <form action="/index.php" method="GET">
                     <input type="hidden" name="page" value="cart">
                     <input type="hidden" name="action" value="checkout">
                     <button type=submit>Checkout</button>

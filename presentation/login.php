@@ -1,4 +1,6 @@
 <?php
+require_once "C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\io\page_request_handler.php";
+
     function showLoginForm($data) {
         echo '<div>
                 <form action="/webshop/index.php" method="post">

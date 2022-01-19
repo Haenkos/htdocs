@@ -1,26 +1,66 @@
 <?php
-    function showResponsePage($data) {
-        beginDocument(); 
-        showHeadSection(); 
-        showBodySection($data); 
-        endDocument(); 
-    }     
+    function showResponsePage($data)
+    {
+        switch ($data['page']) {
+            case 'home':
+                require_once('Home_Doc.php');
+                $view = new HomeDoc($data);
+                $view->show();
+                break;
+            case 'about':
+                require_once('About_Doc.php');
+                $view = new AboutDoc($data);
+                $view->show();
+                break;
+            case 'thanks': //is merged with case 'contact'
+            case 'contact':
+                require_once('Contact_Form_Doc.php');
+                $view = new ContactFormDoc($data);
+                $view->show();
+                break;
+            case 'login':
+                require_once('Login_Form_Doc.php');
+                $view = new LoginFormDoc($data);
+                $view->show();
+                break;
+            case 'registration':
+                require_once('Register_Form_Doc.php');
+                $view = new RegisterFormDoc($data);
+                $view->show();
+                break;
+            case 'webshop':
+                require_once('Webshop_Doc.php');
+                $view = new WebshopDoc($data);
+                $view->show();
+                break;
+            case 'productPage':
+                require_once('Product_Page_Doc.php');
+                $view = new ProductPageDoc($data);
+                $view->show();
+                break;
+            case 'cart':
+                require_once('ShoppingCart_Doc.php');
+                $view = new ShoppingCartDoc($data);
+                $view->show();
+                break;
+        }
+    }
     
     function beginDocument() { 
         echo '<!DOCTYPE html> 
-            <html>'; 
+            <html lang="nl">';
     } 
     
     function showHeadSection() { 
       echo '<head>
                 <title>Webshop</title>
-                <link rel="stylesheet" type="text/css" href="/webshop/css/styles.css">
+                <link rel="stylesheet" type="text/css" href="/css/styles.css">
             </head>';
     } 
     
     function showBodySection($data) { 
        echo '    <body>' . PHP_EOL;
-       debugData($data);
+       //debugData($data);
        showHeader($data['page']);
        showMenu(); 
        showContent($data);
@@ -43,16 +83,16 @@
       echo '<nav class="nav_menu">
                 <ul>
                     <li>
-                        <a href="/webshop/index.php">Home</a>
+                        <a href="/index.php">Home</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=webshop">Webshop</a>
+                        <a href="/index.php?page=webshop">Webshop</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=about">About</a>
+                        <a href="/index.php?page=about">About</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=contact">Contact</a>
+                        <a href="/index.php?page=contact">Contact</a>
                     </li>
                 </ul>
             </nav>';
@@ -61,13 +101,13 @@
                 echo '<nav class="session_menu">
                     <ul>
                         <li>
-                            <a href="/webshop/index.php?page=login">Login</a>
+                            <a href="/index.php?page=login">Login</a>
                         </li>
                         <li>
-                            <a href="/webshop/index.php?page=registration">Register</a>
+                            <a href="/index.php?page=registration">Register</a>
                         </li>
                         <li>
-                            <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                            <a href="/index.php?page=cart">Winkelwagen</a>
                         </li>
                     </ul>
                 </nav>';
@@ -75,10 +115,10 @@
                 echo '<nav class="session_menu">
                 <ul>
                     <li>
-                        <a href="/webshop/index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
+                        <a href="/index.php?page=logout">Logout ' .$_SESSION['userName'].'</a>
                     </li>
                     <li>
-                        <a href="/webshop/index.php?page=cart">Winkelwagen</a>
+                        <a href="/index.php?page=cart">Winkelwagen</a>
                     </li>
                 </ul>
             </nav>';
