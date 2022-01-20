@@ -1,5 +1,8 @@
 <?php
-    require_once 'presentation/contact.php';
+    //require_once 'presentation/contact.php';
+
+    define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "geen" => "Anders/geen"));
+    define('COMPREFS', array("email" => "email", "phone" => "phone"));
 
     function formatInput($input) {
         $input = trim($input);
@@ -21,10 +24,10 @@
             "errors" => array()
         );
 
-        
+        //TODO: make (werking van) gender dropdown beter
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (array_key_exists($_POST['gender'], GENDERS)) {
-                if ($_POST['gender'] == GENDERS['anders/geen']) {
+                if ($_POST['gender'] == GENDERS['geen']) {
                     $data['gender'] == "";
                 } else {
                     $data['gender'] = $_POST['gender'];
@@ -64,7 +67,7 @@
                 }
             }
         
-            if (isset($_POST["compref"]) && array_key_exists($_POST["compref"], COM_PREFS)) {
+            if (isset($_POST["compref"]) && array_key_exists($_POST["compref"], COMPREFS)) {
                 $data['compref'] = formatInput($_POST["compref"]); 
             } else {
                 $data['errors']['comprefError'] = "Geef a.u.b. aan of u liever gebeld of gemaild wil worden.";

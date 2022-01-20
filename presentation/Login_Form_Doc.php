@@ -10,8 +10,23 @@ class LoginFormDoc extends FormsDoc
 
     final function mainContent()
     {
-        require_once 'login.php';
+       $this->showLoginForm();
+    }
 
-        showLoginForm($this->data);
+    private function showLoginForm()
+    {
+        echo "<div class='login_form'>";
+        $this->formStart('/index.php', 'post');
+        $this->hiddenInput('page', 'login');
+
+        echo "Email: ";
+        $this->textInput('loginEmail', getArrayVar($this->data, 'loginEmail'), getArrayVar($this->data['errors'], 'loginEmailError'));
+
+        echo "Password: ";
+        $this->textInput('loginPassword', getArrayVar($this->data, 'loginPassword'), getArrayVar($this->data['errors'], 'loginPasswordError'));
+
+        $this->submitButton('login');
+        $this->formEnd();
+        echo "</div>";
     }
 }

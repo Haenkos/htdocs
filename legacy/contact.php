@@ -1,8 +1,8 @@
 <?php
     require_once "C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\io\page_request_handler.php";
 
-    define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
-    define('COM_PREFS', array("email" => "email", "phone" => "phone"));
+    //define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
+    //define('COM_PREFS', array("email" => "email", "phone" => "phone"));
 
     function generateOptions($array) {
         foreach($array as $value => $option) {

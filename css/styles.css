@@ -114,11 +114,21 @@ input[type="text"] {
     margin-bottom: 5px;
 }
 
+.compref_radioButtons {
+    margin-bottom: 5px;
+    display: inline;
+}
+
+#radio_email {
+    float: left;
+}
+
+
 .error {
     color: red;
 }
 
-#name {
+/*#name {
     margin-left: 28px;
     margin-top: 5px;
 }
@@ -136,4 +146,4 @@ input[type="text"] {
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
+*/

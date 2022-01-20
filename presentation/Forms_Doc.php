@@ -9,12 +9,12 @@ abstract class FormsDoc extends BasicDoc
         parent::__construct($data);
     }
 
-    private function hiddenInput($name, $value)
+    protected function hiddenInput($name, $value)
     {
         $this->inputField('hidden', $name, $value);
     }
 
-    private function dropDownMenu($name, $optionsArray, $errorMessage = '') // gebruik voor genders define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "geen" => "Anders/geen"));
+    protected function dropDownMenu($name, $optionsArray, $errorMessage = '') // gebruik voor genders define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "geen" => "Anders/geen"));
     {
         $this->labelOpen($name);
         echo "<select id='$name' name='$name'>";
@@ -25,7 +25,7 @@ abstract class FormsDoc extends BasicDoc
 
     }
 
-    private function textInput($name, $value, $errorMessage = '')
+    protected function textInput($name, $value, $errorMessage = '')
     {
         $this->labelOpen($name);
         $this->inputField('text', $name, $value);
@@ -33,7 +33,7 @@ abstract class FormsDoc extends BasicDoc
         $this->labelClose();
     }
 
-    private function radioButtonGroup($name, $valuesArray, $errorMessage = '')
+    protected function radioButtonGroup($name, $valuesArray, $errorMessage = '')
     {
         $class = $name."_radioButtons";
 
@@ -57,13 +57,18 @@ abstract class FormsDoc extends BasicDoc
         {
             $checked = true;
         }
+        else
+        {
+            $checked = false;
+        }
 
         $this->labelOpen($id);
         $this->inputField('radio', $name, $value, $id, $checked);
+        echo ucfirst($value);
         $this->labelClose();
     }
 
-    private function textArea($name, $content, $errorMessage = '', $placeholder = '', $rows = 10, $cols = 57)
+    protected function textArea($name, $content, $errorMessage = '', $placeholder = '', $rows = 10, $cols = 57)
     {
         $this->labelOpen($name);
         echo "<textarea id='$name' name='$name' rows='$rows' cols='$cols' placeholder='$placeholder'>";
@@ -74,35 +79,37 @@ abstract class FormsDoc extends BasicDoc
     }
 
 
-    private function submitButton($buttonLabel = 'Submit')
+    protected function submitButton($buttonLabel = 'Submit')
     {
+        echo "<div>";
         $this->labelOpen($buttonLabel);
         echo "<button type='submit' id='$buttonLabel'>";
         echo "$buttonLabel";
         echo "</button>";
         $this->labelClose();
+        echo "</div>";
     }
 
-    private function formStart ($action, $method)
+    protected function formStart ($action, $method)
     {
         echo "<form action='$action' method='$method'>";
     }
 
-    private function formEnd()
+    protected function formEnd()
     {
         echo "</form>";
     }
 
     private function labelOpen($for)
     {
-        echo "<div>";
+        echo "<div id='$for'>";
         echo "<label for='$for'>";
     }
 
     private function labelClose()
     {
         echo "</label>";
-        echo "</div><br>";
+        echo "</div>";
     }
 
     private function inputField($type, $name, $value, $id = Null, $checked = false)
