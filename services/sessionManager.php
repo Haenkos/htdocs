@@ -2,8 +2,8 @@
 // https://www.phptutorial.net/php-tutorial/php-session/
 
 require_once 'userService.php';
-require_once 'io/database_acces_layer.php';
-require_once 'tools/debug.php';
+require_once 'C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\io\database_acces_layer.php';
+require_once 'C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\tools\debug.php';
 
 function loginUser($userName) {
     $_SESSION['userName'] = $userName;

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'io/database_acces_layer.php';
+require_once 'C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\io\database_acces_layer.php';
 
     function userAuthentication($userEmail, $userPassword) {
         $user = getUser($userEmail);

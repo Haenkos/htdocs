@@ -11,8 +11,6 @@ class RegisterFormDoc extends FormsDoc
 
     final function mainContent()
     {
-        require_once 'registration.php';
-
        $this->showRegistrationForm();
     }
     
