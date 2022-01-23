@@ -14,7 +14,7 @@ class ContactFormDoc extends FormsDoc
 
     final function mainContent()
     {
-        if($this->data['page'] == 'thanks') {
+        if($this->data['page'] == 'thanks') { //TODO: Make 'thanks' its own class
             $this->showThanks();
         }
         else
@@ -25,15 +25,15 @@ class ContactFormDoc extends FormsDoc
 
     private function showForm()
     {
-        //TODO: fix no error showing for comprefs
+        //TODO: fix no error showing for comprefs --> likely typo on line 46
 
         echo "<div class='contact_form'>";
         $this->formStart('/index.php', 'post');
         $this->hiddenInput('page', 'contact');
         $this->dropDownMenu('gender', GENDERS, getArrayVar($this->data['errors'], 'genderError'));
 
-        echo "Naam: ";
-        $this->textInput('name', getArrayVar($this->data, 'name'), getArrayVar($this->data['errors'], 'nameError'));
+        echo "Naam: "; //TODO: see if good idea to put this in
+        $this->textInput('name', getArrayVar($this->data, 'name'), getArrayVar($this->data['errors'], 'nameError')); //TODO: textInput function has access to $this->data so you can make function body get value and nameError instead of manually passing it to the function.
 
         echo "Email: ";
         $this->textInput('email', getArrayVar($this->data, 'email'), getArrayVar($this->data['errors'], 'emailError'));

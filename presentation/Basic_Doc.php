@@ -36,7 +36,7 @@ class BasicDoc extends HtmlDoc
     {
         require_once "presentation.php";
 
-        showMenu();
+        showMenu(); //TODO: make menu in this class using menuItemsArray
     }
 
     protected function mainContent()

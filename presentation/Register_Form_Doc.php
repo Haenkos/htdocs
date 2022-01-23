@@ -27,10 +27,10 @@ class RegisterFormDoc extends FormsDoc
         $this->textInput('userEmail', getArrayVar($this->data, 'userEmail'), getArrayVar($this->data['errors'], 'userEmailError'));
 
         echo "Password: ";
-        $this->textInput('userPassword', getArrayVar($this->data, 'userPassword'), getArrayVar($this->data['errors'], 'userPasswordError'));
+        $this->textInput('userPassword', getArrayVar($this->data, 'userPassword'), getArrayVar($this->data['errors'], 'userPasswordError')); //TODO: make passwordInput function
 
         echo "Password again: ";
-        $this->textInput('checkPassword', getArrayVar($this->data, 'checkPassword'), getArrayVar($this->data['errors'], 'checkPasswordError'));
+        $this->textInput('checkPassword', getArrayVar($this->data, 'checkPassword'), getArrayVar($this->data['errors'], 'checkPasswordError')); //TODO: make passwordInput function
 
         $this->submitButton('Register');
         $this->formEnd();

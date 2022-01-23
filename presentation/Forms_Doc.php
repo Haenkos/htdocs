@@ -25,6 +25,8 @@ abstract class FormsDoc extends BasicDoc
 
     }
 
+    //TODO: make passwordInput function for apsswords
+
     protected function textInput($name, $value, $errorMessage = '')
     {
         $this->labelOpen($name);
@@ -90,7 +92,7 @@ abstract class FormsDoc extends BasicDoc
         echo "</div>";
     }
 
-    protected function formStart ($action, $method)
+    protected function formStart ($action, $method) //TODO make action=index.php and method=post defaults
     {
         echo "<form action='$action' method='$method'>";
     }
