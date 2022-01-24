@@ -3,16 +3,16 @@ require_once 'Html_Doc.php';
 
 class BasicDoc extends HtmlDoc
 {
-    protected $data;
+    protected $model;
 
-    public function __construct($data)
+    public function __construct($model)
     {
-        $this->data = $data;
+        $this->model = $model;
     }
 
     protected function title()
     {
-        echo "<title>Welkom op: " . $this->data->page . "</title>";
+        echo "<title>Welkom op: " . $this->model->page . "</title>";
     }
 
     private function metaAuthor()
@@ -28,7 +28,7 @@ class BasicDoc extends HtmlDoc
     private function bodyHeader()
     {
         echo "<header>\n";
-        echo "<h1>".ucfirst($this->data->page)."</h1>";
+        echo "<h1>".ucfirst($this->model->page)."</h1>";
         echo "</header>";
     }
 
@@ -37,7 +37,7 @@ class BasicDoc extends HtmlDoc
         echo '<div class="menus">';
         echo '<nav class="nav_menu">';
         echo '<ul>';
-        foreach ($this->data->menu as $menuItem)
+        foreach ($this->model->menu as $menuItem)
         {
             $menuItem->showMenuItem();
         }
@@ -48,7 +48,7 @@ class BasicDoc extends HtmlDoc
 
     protected function mainContent()
     {
-        echo "<p>Main content placeholder, page = " . $this->data->page."</p>";
+        echo "<p>Main content placeholder, page = " . $this->model->page."</p>";
     }
 
     private function bodyFooter()
