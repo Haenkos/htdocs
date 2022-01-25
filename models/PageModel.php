@@ -48,5 +48,6 @@ class PageModel
          $this->menu['home'] = new MenuItem('home', 'Home');
          $this->menu['about'] = new MenuItem('about', 'About');
          $this->menu['contact'] = new MenuItem('contact', 'Contact');
+         //TODO: add logic for login/logout/registration buttons
     }
 }

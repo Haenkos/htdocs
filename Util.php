@@ -2,6 +2,8 @@
 
 class Util
 {
+    const GENDERS = array("dhr" => "Dhr.", "mvr" => "Mvr.", "geen" => "Anders/geen");
+    const COMPREFS = array("email" => "email", "phone" => "phone");
 
     public static function getArrayVar($array, $key, $default='') 
     { 

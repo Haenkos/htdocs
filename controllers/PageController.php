@@ -30,9 +30,9 @@ class PageController
                 $view->show();
                 break;
             case 'contact':
-                require_once 'views/Contact_Form_Doc.php';
-                $view = new ContactFormDoc($this->model);
-                $view->show();
+                require_once 'userController.php';
+                $controller = new userController($this->model);
+                $controller->contact();
                 break;
         }
     }
