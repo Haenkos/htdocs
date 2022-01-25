@@ -9,12 +9,50 @@ class UserModel extends PageModel
     public $password = '';
     private $userID = '';
     public $valid = '';
-    public $formComprefs;
     public $form = array();
 
     public function __construct($model)
     {
         PARENT::__construct($model);
+    }
+
+    public function doLogin($userName)
+    {
+        $this->sessionManager->loginUser($userName);
+    }
+
+    public function validateLoginForm()
+    {
+        if ($this->isPost) 
+        {
+            if(empty($_POST['loginEmail'])) 
+            {
+                $this->errors['loginEmailError'] = "Please provide email";
+            } 
+            else 
+            {
+                $this->email = Util::formatInput($_POST['loginEmail']);
+
+                if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) 
+                {
+                    $this->errors['loginEmailError'] = "Geen valide e-mail adres";
+                }
+            }
+
+            if (empty($_POST['loginPassword'])) 
+            {
+                $this->errors['loginPasswordError'] = "Please provide your password";
+            } 
+            else 
+            {
+                $this->password = Util::formatInput($_POST['loginPassword']);
+            }
+
+            if (empty($this->errors)) 
+            {
+                $this->valid = true;
+            }
+        }
     }
 
     public function validateContactForm()

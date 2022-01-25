@@ -28,4 +28,23 @@ class UserController extends PageController
             $view->show();
         }
     }
+
+    public function logInUser()
+    {
+        $this->model->validateLoginForm();
+
+        if($this->model->valid)
+        {
+            $this->model->loginUser($this->name);
+            require_once 'views/Home_Doc.php';
+            $view = new HomeDoc($this->model);
+            $view->show();
+        }
+        else
+        {
+            require_once 'views/Login_Form_Doc.php';
+            $view = new LoginFormDoc($this->model);
+            $view->show();
+        }
+    }
 }

@@ -34,6 +34,11 @@ class PageController
                 $controller = new userController($this->model);
                 $controller->contact();
                 break;
+            case 'login':
+                require_once 'userController.php';
+                $controller = new UserController($this->model);
+                $controller -> logInUser();
+                break;
         }
     }
 }

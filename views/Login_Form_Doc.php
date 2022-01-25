@@ -1,11 +1,12 @@
 <?php
 require_once 'Forms_Doc.php';
+require_once 'Util.php';
 
 class LoginFormDoc extends FormsDoc
 {
-    public function __construct($data)
+    public function __construct($model)
     {
-        parent::__construct($data);
+        parent::__construct($model);
     }
 
     final function mainContent()
@@ -20,10 +21,10 @@ class LoginFormDoc extends FormsDoc
         $this->hiddenInput('page', 'login');
 
         echo "Email: ";
-        $this->textInput('loginEmail', getArrayVar($this->data, 'loginEmail'), getArrayVar($this->data['errors'], 'loginEmailError'));
+        $this->textInput('loginEmail', Util::getArrayVar($this->model->form, 'email'), Util::getArrayVar($this->model->errors, 'loginEmailError'));
 
         echo "Password: ";
-        $this->textInput('loginPassword', getArrayVar($this->data, 'loginPassword'), getArrayVar($this->data['errors'], 'loginPasswordError')); //TODO: make passwordInput function (see Forms_Doc.php)
+        $this->textInput('loginPassword', Util::getArrayVar($this->model->form, 'password'), Util::getArrayVar($this->model->errors, 'loginPasswordError')); //TODO: make passwordInput function (see Forms_Doc.php)
 
         $this->submitButton('login');
         $this->formEnd();
