@@ -1,12 +1,12 @@
 <?php
 require_once 'Basic_Doc.php';
-require_once 'C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\io\page_request_handler.php';
 
 abstract class FormsDoc extends BasicDoc
 {
-    public function __construct($data)
+
+    public function __construct($model)
     {
-        parent::__construct($data);
+        parent::__construct($model);
     }
 
     protected function hiddenInput($name, $value)
@@ -14,7 +14,7 @@ abstract class FormsDoc extends BasicDoc
         $this->inputField('hidden', $name, $value);
     }
 
-    protected function dropDownMenu($name, $optionsArray, $errorMessage = '') // gebruik voor genders define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "geen" => "Anders/geen"));
+    protected function dropDownMenu($name, $optionsArray, $errorMessage = '')
     {
         $this->labelOpen($name);
         echo "<select id='$name' name='$name'>";
@@ -54,14 +54,14 @@ abstract class FormsDoc extends BasicDoc
     private function radioButton($name, $value)
     {
         $id = "radio_".$value;
+        $checked = false;
 
-        if ($this->data->name == $value)
+        if (array_key_exists($name, $this->model->form))
         {
-            $checked = true;
-        }
-        else
-        {
-            $checked = false;
+            if ($this->model->form[$name] == $value)
+                {
+                $checked = true;
+                }
         }
 
         $this->labelOpen($id);
@@ -135,7 +135,7 @@ abstract class FormsDoc extends BasicDoc
         echo "<span class='error'>$errorMessage</span>";
     }
 
-    private function generateOptions($array) { // gebruik voor genders define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "anders/geen" => "Anders/geen"));
+    private function generateOptions($array) {
         foreach($array as $value => $option) {
             echo "<option value='".$value."'>".$option."</option><br>";
         }

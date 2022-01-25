@@ -1,5 +1,6 @@
 <?php
 require_once 'Html_Doc.php';
+require_once 'tools/debug.php';
 
 class BasicDoc extends HtmlDoc
 {
@@ -43,6 +44,14 @@ class BasicDoc extends HtmlDoc
         }
         echo '</ul>';
         echo '</nav>';
+        echo '<nav class="session_menu">';
+        echo '<ul>';
+        foreach ($this->model->sessionMenu as $menuItem)
+        {
+            $menuItem->showMenuItem();
+        }
+        echo '</ul>';
+        echo '</nav>';
         echo '</div>';
     }
 
@@ -71,5 +80,6 @@ class BasicDoc extends HtmlDoc
         $this->mainMenu();
         $this->mainContent();
         $this->bodyFooter();
+        debugData($this->model);
     }
 }

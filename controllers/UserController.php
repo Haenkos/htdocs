@@ -1,5 +1,6 @@
 <?php
 require_once 'PageController.php';
+require_once 'models/UserModel.php';
 
 class UserController extends PageController
 {
@@ -16,13 +17,13 @@ class UserController extends PageController
 
         if ($this->model->valid)
         {
-            require_once '../views/Contact_Thanks_Doc.php';
+            require_once 'views/Contact_Thanks_Doc.php';
             $view = new ContactThanksDoc($this->model);
             $view->show();
         } 
         else
         {
-            require_once '../views/Contact_Form_Doc.php';
+            require_once 'views/Contact_Form_Doc.php';
             $view = new ContactFormDoc($this->model);
             $view->show();
         }

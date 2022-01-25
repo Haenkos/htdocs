@@ -9,14 +9,14 @@ class ContactThanksDoc extends BasicDoc
         PARENT::__construct($model);
     }
 
-    public function show()
+    final function mainContent()
     {
         echo '<p>Bedankt voor uw reactie!</p>
         
 
-        <div>Naam: '.$this->contact['name'].'</div>
-        <div>Email: '.$this->contact['email'].'</div>
-        <div>Nummer: '.$this->contact['phone'].'</div>
-        <div>Bericht: '.$this->contact['message'].'</div>';
+        <div>Naam: '.$this->model->form['name'].'</div>
+        <div>Email: '.$this->model->form['email'].'</div>
+        <div>Nummer: '.$this->model->form['phone'].'</div>
+        <div>Bericht: '.$this->model->form['message'].'</div>';
     }
 }

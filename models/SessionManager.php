@@ -6,12 +6,12 @@ class SessionManager
         $_SESSION['userName'] = $userName;
     }
     
-    public function checkAnyLoggedIn() {
+    public function isUserLoggedIn() {
         if (isset($_SESSION['userName'])) {
-            console_log('Identified a user is logged in from checkAnyLoggedIn');
+            //console_log('Identified a user is logged in from checkAnyLoggedIn');
             return true;
         } else {
-            console_log('Identified NO user is logged in from checkAnyLoggedIn');
+            //console_log('Identified NO user is logged in from checkAnyLoggedIn');
             return false;
         }
     }

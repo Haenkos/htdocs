@@ -20,6 +20,12 @@ class Util
         return self::getArrayVar($_GET, $key, $default);
     }
 
+    public static function formatInput($input) {
+        $input = trim($input);
+        $input = stripslashes($input);
+        $input = htmlspecialchars($input);
+        return $input;
+    }
 }
     
 ?>
