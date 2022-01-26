@@ -1,6 +1,7 @@
 <?php
 require_once 'Forms_Doc.php';
-require_once 'C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\tools\debug.php';
+//require_once 'C:\Bitnami\wampstack-8.1.2-0\apache2\htdocs\tools\debug.php';
+require_once 'Util.php';
 
 class ContactFormDoc extends FormsDoc
 {

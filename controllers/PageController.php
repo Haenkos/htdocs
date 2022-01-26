@@ -30,12 +30,12 @@ class PageController
                 $view->show();
                 break;
             case 'contact':
-                require_once 'userController.php';
-                $controller = new userController($this->model);
+                require_once 'UserController.php';
+                $controller = new UserController($this->model);
                 $controller->contact();
                 break;
             case 'login':
-                require_once 'userController.php';
+                require_once 'UserController.php';
                 $controller = new UserController($this->model);
                 $controller -> logInUser();
                 break;

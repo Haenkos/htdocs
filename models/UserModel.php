@@ -1,6 +1,6 @@
 <?php
 require_once 'PageModel.php';
-require_once 'Util.php';
+require_once 'C:\Bitnami\wampstack-8.1.2-0\apache2\htdocs\Util.php';
 require_once 'io/database_acces_layer.php';
 
 class UserModel extends PageModel
@@ -24,7 +24,8 @@ class UserModel extends PageModel
         $this->sessionManager->loginUser($user);
     }
 
-    private function userAuthentication($userEmail, $userPassword) {
+    private function userAuthentication($userEmail, $userPassword) 
+    {
         $user = getUser($userEmail);
         
         if (strcmp($userPassword, $user["userPassword"]) != 0) {
@@ -34,9 +35,9 @@ class UserModel extends PageModel
         }
     }
 
-    private function saveUser ($userName, $userEmail, $userPassword) {
-        storeUser($userName, $userEmail, $userPassword);
-    }
+    //private function saveUser ($userName, $userEmail, $userPassword) {
+    //    storeUser($userName, $userEmail, $userPassword);
+    //}
 
     public function validateLoginForm()
     {
