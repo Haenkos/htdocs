@@ -1,6 +1,7 @@
 <?php
 require_once 'PageModel.php';
 require_once 'Util.php';
+require_once 'io/database_acces_layer.php';
 
 class UserModel extends PageModel
 {
@@ -16,9 +17,25 @@ class UserModel extends PageModel
         PARENT::__construct($model);
     }
 
-    public function doLogin($userName)
+    public function doLogin()
     {
-        $this->sessionManager->loginUser($userName);
+        $user = $this->userAuthentication($this->email, $this->password);
+        
+        $this->sessionManager->loginUser($user);
+    }
+
+    private function userAuthentication($userEmail, $userPassword) {
+        $user = getUser($userEmail);
+        
+        if (strcmp($userPassword, $user["userPassword"]) != 0) {
+            throw new Exception("Wrong Password");
+        } else {
+            return array("userID" => $user['userID'], "userName" => $user['userName']);
+        }
+    }
+
+    private function saveUser ($userName, $userEmail, $userPassword) {
+        storeUser($userName, $userEmail, $userPassword);
     }
 
     public function validateLoginForm()

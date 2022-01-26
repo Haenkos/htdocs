@@ -35,7 +35,12 @@ class UserController extends PageController
 
         if($this->model->valid)
         {
-            $this->model->loginUser($this->name);
+            try {
+                $this->model->doLogin($this->email);
+            } catch (exception $e) {
+                $this->model->errors['loginError'] = $e;
+            }
+
             require_once 'views/Home_Doc.php';
             $view = new HomeDoc($this->model);
             $view->show();

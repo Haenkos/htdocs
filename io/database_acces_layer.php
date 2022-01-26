@@ -6,14 +6,14 @@
         $link = openDatabase();
 
         try {
-            $query = "SELECT userName, userEmail, userPassword FROM users WHERE userEmail='$email'";
+            $query = "SELECT userID, userName, userEmail, userPassword FROM users WHERE userEmail='$email'";
 
             $queryResult = mysqli_query($link, $query);
 
             if(mysqli_num_rows($queryResult) > 0) {
                 return mysqli_fetch_assoc($queryResult);
             } else {
-                return NULL;
+                throw new Exception('Email not found');
             }
         } finally {
             closeDatabase($link);
