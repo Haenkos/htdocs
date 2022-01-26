@@ -1,6 +1,6 @@
 <?php
 require_once 'PageModel.php';
-require_once 'C:\Bitnami\wampstack-8.1.2-0\apache2\htdocs\Util.php';
+require_once 'Util.php';
 require_once 'io/database_acces_layer.php';
 
 class UserModel extends PageModel
