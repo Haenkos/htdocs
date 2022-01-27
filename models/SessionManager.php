@@ -2,9 +2,9 @@
 
 class SessionManager
 {
-    public  function loginUser($user) {
-        $_SESSION['userName'] = $user['userName'];
-        $_SESSION['userID'] = $user['userID'];
+    public  function loginUser($name, $userID) {
+        $_SESSION['userName'] = $name;
+        $_SESSION['userID'] = $userID;
     }
     
     public function isUserLoggedIn() {

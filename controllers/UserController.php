@@ -36,7 +36,7 @@ class UserController extends PageController
         if($this->model->valid)
         {
             try {
-                $this->model->doLogin($this->email);
+                $this->model->doLogin();
             } catch (exception $e) {
                 $this->model->errors['loginError'] = $e;
             }
@@ -51,5 +51,9 @@ class UserController extends PageController
             $view = new LoginFormDoc($this->model);
             $view->show();
         }
+    }
+
+    public function logoutUser() {
+        $this->model->doLogout();
     }
 }

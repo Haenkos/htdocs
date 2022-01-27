@@ -19,9 +19,15 @@ class UserModel extends PageModel
 
     public function doLogin()
     {
-        $user = $this->userAuthentication($this->email, $this->password);
+        $this->userAuthentication($this->email, $this->password);
         
-        $this->sessionManager->loginUser($user);
+        $this->sessionManager->loginUser($this->name, $this->userID);
+
+    }
+
+    public function doLogout()
+    {
+        $this->sessionManager->logOutUser();
     }
 
     private function userAuthentication($userEmail, $userPassword) 
@@ -31,7 +37,8 @@ class UserModel extends PageModel
         if (strcmp($userPassword, $user["userPassword"]) != 0) {
             throw new Exception("Wrong Password");
         } else {
-            return array("userID" => $user['userID'], "userName" => $user['userName']);
+            $this->userID = $user['userID'];
+            $this->name = $user['userName'];
         }
     }
 
