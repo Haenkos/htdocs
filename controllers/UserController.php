@@ -37,13 +37,16 @@ class UserController extends PageController
         {
             try {
                 $this->model->doLogin();
+                
+                require_once 'views/Home_Doc.php';
+                $view = new HomeDoc($this->model);
+                $view->show();
             } catch (exception $e) {
-                $this->model->errors['loginError'] = $e;
+                $this->model->errors['loginError'] = $e->getMessage();
+                require_once 'views/Login_Form_Doc.php';
+                $view = new LoginFormDoc($this->model);
+                $view->show();
             }
-
-            require_once 'views/Home_Doc.php';
-            $view = new HomeDoc($this->model);
-            $view->show();
         }
         else
         {
@@ -55,5 +58,31 @@ class UserController extends PageController
 
     public function logoutUser() {
         $this->model->doLogout();
+    }
+
+    public function registerUser()
+    {
+        $this->model->validateRegistrationForm();
+
+        if($this->model->valid)
+        {
+            try {
+                $this->model->doRegister();
+
+                require_once 'views/Login_Form_Doc.php';
+                $view = new LoginFormDoc($this->model);
+                $view->show();
+            } catch (exception $e) {
+                $this->model->errors['registerError'] = $e->getMessage();
+                
+                require_once 'views/Register_Form_Doc.php';
+                $view = new RegisterFormDoc($this->model);
+                $view->show();
+            }
+        } else {
+            require_once 'views/Register_Form_Doc.php';
+            $view = new RegisterFormDoc($this->model);
+            $view->show();
+        }
     }
 }

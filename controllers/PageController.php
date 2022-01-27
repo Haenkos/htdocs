@@ -46,6 +46,12 @@ class PageController
                 $controller -> logOutUser();
                 $view = new HomeDoc($this->model);
                 $view->show();
+            case 'register':
+                require_once 'UserController.php';
+                $controller = new UserController($this->model);
+                $controller->registerUser();
+                break;
+
         }
     }
 }
