@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'C:\Bitnami\wampstack-8.0.13-0\apache2\htdocs\tools\debug.php';
+    require_once 'tools/debug.php';
 
     function getUser($email) {
         $link = openDatabase();
