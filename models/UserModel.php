@@ -8,6 +8,7 @@ class UserModel extends PageModel
     public $email = '';
     public $name = '';
     public $password = '';
+    public $checkPassword = '';
     private $userID = '';
     public $valid = '';
     public $form = array();
@@ -19,25 +20,33 @@ class UserModel extends PageModel
 
     public function doLogin()
     {
-        $user = $this->userAuthentication($this->email, $this->password);
+        $this->userAuthentication();
         
-        $this->sessionManager->loginUser($user);
+        $this->sessionManager->loginUser($this->name, $this->userID);
+
     }
 
-    private function userAuthentication($userEmail, $userPassword) 
+    public function doLogout()
     {
-        $user = getUser($userEmail);
+        $this->sessionManager->logOutUser();
+    }
+
+    public function doRegister()
+    {
+            storeUser($this->form['name'], $this->form['email'], $this->form['password']);
+    }
+
+    private function userAuthentication() 
+    {
+        $user = getUser($this->email);
         
-        if (strcmp($userPassword, $user["userPassword"]) != 0) {
+        if (strcmp($this->password, $user["userPassword"]) != 0) {
             throw new Exception("Wrong Password");
         } else {
-            return array("userID" => $user['userID'], "userName" => $user['userName']);
+            $this->userID = $user['userID'];
+            $this->name = $user['userName'];
         }
     }
-
-    //private function saveUser ($userName, $userEmail, $userPassword) {
-    //    storeUser($userName, $userEmail, $userPassword);
-    //}
 
     public function validateLoginForm()
     {
@@ -49,9 +58,9 @@ class UserModel extends PageModel
             } 
             else 
             {
-                $this->email = Util::formatInput($_POST['loginEmail']);
+                $this->form['email'] = Util::formatInput($_POST['loginEmail']);
 
-                if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) 
+                if (!filter_var($this->form['email'], FILTER_VALIDATE_EMAIL)) 
                 {
                     $this->errors['loginEmailError'] = "Geen valide e-mail adres";
                 }
@@ -63,11 +72,65 @@ class UserModel extends PageModel
             } 
             else 
             {
-                $this->password = Util::formatInput($_POST['loginPassword']);
+                $this->form['password'] = Util::formatInput($_POST['loginPassword']);
             }
 
             if (empty($this->errors)) 
             {
+                $this->valid = true;
+            }
+        }
+    }
+
+    public function validateRegistrationForm()
+    {
+        if ($this->isPost) 
+        {
+            if(isset($_POST['name'])) 
+            {
+                $this->form['name'] = Util::formatInput($_POST['name']);
+
+                if(empty($this->form['name'])) {
+                    $this->errors['nameError'] = "Username cannot be empty";
+                }
+
+            } else {
+                $this->errors['nameError'] = "Please choose a username";
+            }
+
+            if(empty($_POST['email'])) {
+                $this->errors['emailError'] = "Please provide email";
+            } else {
+                $this->form['email'] = Util::formatInput($_POST['userEmail']);
+
+                if (!filter_var($this->form['email'], FILTER_VALIDATE_EMAIL)) {
+                    $this->errors['emailError'] = "Geen valide e-mail adres"; 
+                }
+            }
+
+            if(empty($_POST['password'])) {
+                $this->errors['passwordError'] = "Please Choose a password";
+            } else {
+                $this->form['password'] = Util::formatInput($_POST['password']);
+
+                if (strlen($this->form['password']) < 8) {
+                    $this->errors['passwordError'] = "Password must be 8 or more characters"; 
+                }
+            }
+
+            if(!empty($this->form['password'])) {
+                if(empty($_POST['checkPassword'])) {
+                    $this->errors['checkPasswordError'] = "Please retype password";
+                } else {
+                    $this->form['checkPassword'] = Util::formatInput($_POST['checkPassword']);
+
+                    if (strcmp($this->form['password'], $this->form['checkPassword']) !== 0) {
+                        $this->errors['checkPasswordError'] = "Passwords do not match";
+                    }
+                }
+            }
+
+            if (empty($this->errors)) {
                 $this->valid = true;
             }
         }

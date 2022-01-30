@@ -6,7 +6,7 @@ function console_log($data) {
 }
 
 function debugData($data) {
-
+    //echo phpinfo();
     echo '<div>
                 <pre>$_GET: '; var_dump($_GET); echo '</pre>
                 <pre>$_POST: '; var_dump($_POST); echo '</pre>
