@@ -3,14 +3,14 @@ require_once 'Basic_Doc.php';
 
 class WebshopDoc extends BasicDoc
 {
-    public function __construct($data)
+    public function __construct($model)
     {
-        parent::__construct($data);
+        parent::__construct($model);
     }
 
     protected function mainContent()
     {
-        $this->showWebshopContent($this->data['productsList']);
+        $this->showWebshopContent($this->model->productList);
     }
 
     private function showWebshopContent($productList) {

@@ -51,7 +51,19 @@ class PageController
                 $controller = new UserController($this->model);
                 $controller->registerUser();
                 break;
-
+            case 'webshop':
+                require_once 'ShopController.php';
+                require_once 'views/Webshop_Doc.php';
+                $controller = new ShopController($this->model);
+                $controller->getProductList();
+                $controller->showWebshop();
+                break;
+            case 'productPage':
+                require_once 'ShopController.php';
+                require_once 'views/Product_Page_Doc.php';
+                $controller = new ShopController($this->model);
+                $controller->showProductPage();
+                break;
         }
     }
 }

@@ -4,14 +4,14 @@ require_once 'Basic_Doc.php';
 
 class ProductPageDoc extends BasicDoc
 {
-    public function __construct($data)
+    public function __construct($model)
     {
-        parent::__construct($data);
+        parent::__construct($model);
     }
 
     protected function mainContent()
     {
-        $this->showProductPage($this->data['product']);
+        $this->showProductPage($this->model->product);
     }
 
     function showProductPage($product) {
