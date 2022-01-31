@@ -75,6 +75,7 @@ class SessionManager
             else 
             {
                 return false;
+                
             }
         }
         

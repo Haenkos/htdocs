@@ -30,11 +30,25 @@ class WebshopModel extends PageModel
                 $this->sessionManager->updateCart($this->productID);
                 break;
             case 'checkout':
-                $this->storeOrder();
-                break;
-            default:
-                return;
-
+                if ($this->sessionManager->isUserLoggedIn())
+                {
+                    if($this->sessionManager->getCart())
+                    {
+                        console_log('somehow this still runs');
+                        $this->storeOrder();
+                        $this->sessionManager->emptyCart();
+                        console_log('order stored');
+                        break;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    throw new Exception("noLoggedInUser");
+                }
         }
     }
 
@@ -110,7 +124,7 @@ class WebshopModel extends PageModel
             }
             $this->productList = $productList;
         } 
-        else 
+        else
         {
             return NULL;
         }
@@ -118,7 +132,7 @@ class WebshopModel extends PageModel
 
     private function storeOrder() {
         $link = openDatabase();
-    
+        
         //$productsList = getAllProducts();
         $userID = $this->sessionManager->getUserID();
     

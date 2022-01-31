@@ -65,26 +65,30 @@ class PageController
                 $controller->showProductPage();
                 break;
             case 'cart':
-                console_log('checking action variable');
-                if (strcmp($_GET['action'], 'checkout') == 0)
+                try
                 {
-                    console_log('action == checkout');
-                    if (!$this->model->isUserLoggedIn())
-                    {
-                        require_once 'UserController.php';
-                        console_log('redirecting to login page');
-                        $controller = new UserController($this->model);
-                        $controller -> logInUser();
-                        break;
-                    }
-                }
-                else 
-                {   
-                    console_log('weird shit is happening');
                     require_once 'ShopController.php';
                     $controller = new ShopController($this->model);
                     $controller->showCart();
                     break;
+                }
+                catch (Exception $e)
+                {
+                    if ($e->getMessage() == 'noLoggedInUser')
+                    {
+                        require_once 'controllers/UserController.php';
+                        $controller = new UserController($this->model);
+                        $controller->logInUser();
+                        break;
+                    } 
+                    else 
+                    {
+                        $this->model->errors['generalError'] = $e->getMessage();
+                        require_once 'views/Error_Doc.php';
+                        $view = new ErrorDoc($this->model);
+                        $view->show();
+                        break;
+                    }
                 }
         }
     }
