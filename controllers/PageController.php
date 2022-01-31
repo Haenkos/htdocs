@@ -1,5 +1,6 @@
 <?php
     require_once 'models/PageModel.php';
+    require_once 'tools/debug.php';
 
 class PageController
 {
@@ -44,8 +45,10 @@ class PageController
                 require_once 'UserController.php';
                 $controller = new UserController($this->model);
                 $controller -> logOutUser();
+                $this->model->createMenu();
                 $view = new HomeDoc($this->model);
                 $view->show();
+                break;
             case 'register':
                 require_once 'UserController.php';
                 $controller = new UserController($this->model);
@@ -53,17 +56,36 @@ class PageController
                 break;
             case 'webshop':
                 require_once 'ShopController.php';
-                require_once 'views/Webshop_Doc.php';
                 $controller = new ShopController($this->model);
-                $controller->getProductList();
                 $controller->showWebshop();
                 break;
             case 'productPage':
                 require_once 'ShopController.php';
-                require_once 'views/Product_Page_Doc.php';
                 $controller = new ShopController($this->model);
                 $controller->showProductPage();
                 break;
+            case 'cart':
+                console_log('checking action variable');
+                if (strcmp($_GET['action'], 'checkout') == 0)
+                {
+                    console_log('action == checkout');
+                    if (!$this->model->isUserLoggedIn())
+                    {
+                        require_once 'UserController.php';
+                        console_log('redirecting to login page');
+                        $controller = new UserController($this->model);
+                        $controller -> logInUser();
+                        break;
+                    }
+                }
+                else 
+                {   
+                    console_log('weird shit is happening');
+                    require_once 'ShopController.php';
+                    $controller = new ShopController($this->model);
+                    $controller->showCart();
+                    break;
+                }
         }
     }
 }

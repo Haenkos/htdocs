@@ -12,6 +12,7 @@ class PageModel
     public $sessionMenu;
     public $errors = array();
     protected $sessionManager;
+    public $action = '';
 
     public function __construct($copy)
     {
@@ -23,6 +24,7 @@ class PageModel
             $this->sessionMenu = $copy->sessionMenu;
             $this->errors = $copy->errors;
             $this->sessionManager = $copy->sessionManager;
+            $this->action = $copy->action;
         }
         else
         {
@@ -46,7 +48,8 @@ class PageModel
     }
 
     public function createMenu()
-    {
+    {   
+        $this->sessionMenu = array();
          $this->menu['home'] = new MenuItem('home', 'Home');
          $this->menu['about'] = new MenuItem('about', 'About');
          $this->menu['contact'] = new MenuItem('contact', 'Contact');
@@ -62,5 +65,10 @@ class PageModel
              $this->sessionMenu['register'] = new MenuItem('register', 'Register');
          }
          $this->sessionMenu['cart'] = new MenuItem('cart', 'Winkelwagen');
+    }
+
+    public function isUserLoggedIn()
+    {
+        return $this->sessionManager->getLoggedInUser();
     }
 }

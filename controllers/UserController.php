@@ -39,6 +39,7 @@ class UserController extends PageController
                 $this->model->doLogin();
                 
                 require_once 'views/Home_Doc.php';
+                $this->model->createMenu();
                 $view = new HomeDoc($this->model);
                 $view->show();
             } catch (exception $e) {

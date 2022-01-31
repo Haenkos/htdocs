@@ -38,9 +38,9 @@ class UserModel extends PageModel
 
     private function userAuthentication() 
     {
-        $user = getUser($this->email);
+        $user = getUser($this->form['email']);
         
-        if (strcmp($this->password, $user["userPassword"]) != 0) {
+        if (strcmp($this->form['password'], $user["userPassword"]) != 0) {
             throw new Exception("Wrong Password");
         } else {
             $this->userID = $user['userID'];
