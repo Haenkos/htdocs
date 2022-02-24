@@ -1,5 +1,5 @@
 <?php
-    require_once 'models/SessionManager.php';
+    require_once 'services/SessionManager.php';
     require_once 'Util.php';
     require_once 'views/MenuItem.php';
 

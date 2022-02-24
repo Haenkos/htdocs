@@ -17,7 +17,7 @@ class WebshopDoc extends BasicDoc
         echo '<div class="webshop">';
 
         foreach ($productList as $product) {
-            echo '<div class="productcard">';
+            echo '<div class="productcard">'; /* JH QUESTION: Waarom is deze div niet onderdeel van showProductCard() ? */
             $this->showProductCard($product);
             echo '</div>';
         }

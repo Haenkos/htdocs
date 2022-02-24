@@ -45,7 +45,7 @@ class PageController
                 require_once 'UserController.php';
                 $controller = new UserController($this->model);
                 $controller -> logOutUser();
-                $this->model->createMenu();
+                $this->model->createMenu(); /* JH TIP: Als je een andere controller het werk laat doen, laat die dan ook de view genereren */
                 $view = new HomeDoc($this->model);
                 $view->show();
                 break;
@@ -74,7 +74,7 @@ class PageController
                 }
                 catch (Exception $e)
                 {
-                    if ($e->getMessage() == 'noLoggedInUser')
+                    if ($e->getMessage() == 'noLoggedInUser') /* JH: In plaats van een specifieke message is het gebruikelijk om een custom Exception class (bijv. NotLoggedInException of SecurityException) te maken (zie https://www.w3schools.com/php/php_exception.asp) */
                     {
                         require_once 'controllers/UserController.php';
                         $controller = new UserController($this->model);

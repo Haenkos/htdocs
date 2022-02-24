@@ -8,7 +8,7 @@ function storeOrder() {
     $link = openDatabase();
 
     //$productsList = getAllProducts();
-    $userID = getUserID(getLoggedInUser());
+    $userID = getUserID(getLoggedInUser()); /* JH: Beter om de $userId en $cart aan de functie mee te geven */
 
     console_log('userID is: '. $userID);
 

@@ -1,4 +1,4 @@
-<?php
+<?php /* JH: Wordt deze code nog gebruikt? */
 require_once 'io/ordersIO.php';
 require_once 'sessionManager.php';
 require_once 'tools/debug.php';

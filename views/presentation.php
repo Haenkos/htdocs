@@ -1,4 +1,4 @@
-<?php
+<?php /* JH: Deze file is overbodig sinds opdracht 4.2 */
     function showResponsePage($data)
     {
         switch ($data['page']) {

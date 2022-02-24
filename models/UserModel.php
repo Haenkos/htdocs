@@ -41,7 +41,7 @@ class UserModel extends PageModel
         $user = getUser($this->form['email']);
         
         if (strcmp($this->form['password'], $user["userPassword"]) != 0) {
-            throw new Exception("Wrong Password");
+            throw new Exception("Wrong Password"); /* JH TIP: Je kan hier een custom exception van maken */
         } else {
             $this->userID = $user['userID'];
             $this->name = $user['userName'];
@@ -52,9 +52,10 @@ class UserModel extends PageModel
     {
         if ($this->isPost) 
         {
-            if(empty($_POST['loginEmail'])) 
+            /* JH: deze code lijkt erg op regel 102 en regel 166, dit is niet DRY, kan je hier een functie voor maken */
+            if(empty($_POST['loginEmail'])) /* JH: Gebruik geen $_POST maar $this->form['email'] = Utils:formatInput(Utils::getPostVar('email')); */
             {
-                $this->errors['loginEmailError'] = "Please provide email";
+                $this->errors['loginEmailError' /* JH TIP: Gebruik hier dezelfde keys als je in de form array gebruikt */] = "Please provide email";
             } 
             else 
             {
@@ -98,6 +99,7 @@ class UserModel extends PageModel
                 $this->errors['nameError'] = "Please choose a username";
             }
 
+            /* JH: deze code lijkt erg op regel 55 en regel 166, dit is niet DRY, kan je hier een functie voor maken */
             if(empty($_POST['email'])) {
                 $this->errors['emailError'] = "Please provide email";
             } else {
@@ -161,7 +163,7 @@ class UserModel extends PageModel
                 
             }
         
-            if (empty($_POST["email"])) {
+            if (empty($_POST["email"])) { /* JH: deze code lijkt erg op regel 55 en regel 165, dit is niet DRY, kan je hier een functie voor maken */
                 $this->errors['emailError'] = "Email invullen a.u.b.";
             } else {
                 $this->form['email'] = Util::formatInput($_POST["email"]);

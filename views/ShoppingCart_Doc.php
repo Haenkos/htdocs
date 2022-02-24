@@ -41,7 +41,7 @@ class ShoppingCartDoc extends BasicDoc
 
         echo '</div>';
         echo '<br><div>
-            <form action="/index.php" method="GET">
+            <form action="index.php" method="GET">
                 <input type="hidden" name="page" value="cart">
                 <input type="hidden" name="action" value="checkout">
                 <button type=submit>Checkout</button>

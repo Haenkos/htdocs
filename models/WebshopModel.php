@@ -18,6 +18,7 @@ class WebshopModel extends PageModel
 
     public function handleCartActions()
     {
+        /* JH: Ik zou hier van maken $this->action = Util::getUrlVar('action'); */
         if (array_key_exists('action', $_GET))
         {
             $this->action = $_GET['action'];
@@ -26,6 +27,7 @@ class WebshopModel extends PageModel
         switch ($this->action)
         {
             case 'addToCart':
+                /* JH TIP, ik zou dit ook niet toestaan als er niemand is ingelogged, dus de if (isUserLoggedIn) voor de switch zetten */
                 $this->productID = $_GET['cartItemID'];
                 $this->sessionManager->updateCart($this->productID);
                 break;
@@ -47,8 +49,8 @@ class WebshopModel extends PageModel
                 }
                 else
                 {
-                    throw new Exception("noLoggedInUser");
-                }
+                    throw new Exception("noLoggedInUser"); /* JH: In plaats van een specifieke message is het gebruikelijk om een custom Exception class (bijv. NotLoggedInException of SecurityException) te maken (zie https://www.w3schools.com/php/php_exception.asp) */
+                } 
         }
     }
 
@@ -58,7 +60,7 @@ class WebshopModel extends PageModel
 
             if (!$cart)
             {
-                throw new Exception("Winkelwagen is leeg!");
+                throw new Exception("Winkelwagen is leeg!"); /* JH: Dit zou ik niet met een exceptie doen, dit is een normale foutsituatie, ik zou hier een isCartEmpty functie hebben */
             }
             else
             {
@@ -67,7 +69,7 @@ class WebshopModel extends PageModel
         
     }
 
-    public function getProduct()
+    public function getProduct() /* JH: Waarom staat dit niet in de database_access_layer of produtctIO ? m.u.v. getProductID */
     {
         $this->getProductID();
 
@@ -99,7 +101,7 @@ class WebshopModel extends PageModel
         $this->productID = $_GET['ID'];
     }
 
-    public function getProductList()
+    public function getProductList() /* JH: Waarom staat dit niet in de database_access_layer of produtctIO ? */
     {
         $link = openDatabase();
 
@@ -130,7 +132,7 @@ class WebshopModel extends PageModel
         }
     }
 
-    private function storeOrder() {
+    private function storeOrder() { /* JH: Waarom staat dit niet in de database_access_layer of ordersIO ? */
         $link = openDatabase();
         
         //$productsList = getAllProducts();
@@ -148,7 +150,7 @@ class WebshopModel extends PageModel
     
         $lastID = mysqli_insert_id($link);
     
-        foreach ($this->cart as $itemID => $amount) {
+        foreach ($this->cart /* JH: DEZE IS LEEG */ as $itemID => $amount) {
             $query = "INSERT INTO ordersproducts (orderID, productID, amount) VALUES ('$lastID', '$itemID', '$amount')";
             
             if (mysqli_query($link, $query)) {

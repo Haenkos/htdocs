@@ -78,6 +78,7 @@ class BasicDoc extends HtmlDoc
     {
         $this->bodyHeader();
         $this->mainMenu();
+        /* JH TIP: Ik zou nog een $this->showGenericError() hiertussen plaatsen */
         $this->mainContent();
         $this->bodyFooter();
         debugData($this->model);

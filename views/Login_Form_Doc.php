@@ -18,7 +18,7 @@ class LoginFormDoc extends FormsDoc
     {
         echo "<div class='login_form'>";
         echo Util::getArrayVar($this->model->errors, 'loginError');
-        $this->formStart('/index.php', 'post');
+        $this->formStart('index.php', 'post');
         $this->hiddenInput('page', 'login');
 
         echo "Email: ";

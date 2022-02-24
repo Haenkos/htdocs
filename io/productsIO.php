@@ -1,7 +1,7 @@
 <?php
     require_once 'database_acces_layer.php';
 
-    function getAllProducts() {
+    function getAllProducts() { /* JH QUESTION: Waarom staan deze functies niet in database_access_layer? */
         $link = openDatabase();
 
         $query = "SELECT * FROM products;";

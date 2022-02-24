@@ -1,4 +1,4 @@
-<?php
+<?php /* JH: Deze file is overbodig sinds opdracht 4.2 */
     //require_once 'presentation/contact.php';
 
     define('GENDERS', array("dhr" => "Dhr.", "mvr" => "Mvr.", "geen" => "Anders/geen"));

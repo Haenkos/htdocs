@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Gegenereerd op: 20 jan 2022 om 10:41
--- Serverversie: 10.4.22-MariaDB
--- PHP-versie: 8.0.13
+-- Host: localhost:3306
+-- Generation Time: Jan 31, 2022 at 11:36 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `orders`
+-- Table structure for table `orders`
 --
 
 CREATE TABLE `orders` (
@@ -34,7 +34,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `orders`
+-- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`ID`, `UserID`, `orderDate`) VALUES
@@ -45,12 +45,25 @@ INSERT INTO `orders` (`ID`, `UserID`, `orderDate`) VALUES
 (5, 5, '2022-01-17 00:00:00'),
 (6, 5, '2022-01-17 00:00:00'),
 (7, 5, '2022-01-17 00:00:00'),
-(8, 5, '2022-01-17 00:00:00');
+(8, 5, '2022-01-17 00:00:00'),
+(9, 5, '2022-01-31 00:00:00'),
+(10, 5, '2022-01-31 00:00:00'),
+(11, 5, '2022-01-31 00:00:00'),
+(12, 5, '2022-01-31 00:00:00'),
+(13, 5, '2022-01-31 00:00:00'),
+(14, 5, '2022-01-31 00:00:00'),
+(15, 5, '2022-01-31 00:00:00'),
+(16, 5, '2022-01-31 00:00:00'),
+(17, 5, '2022-01-31 00:00:00'),
+(18, 5, '2022-01-31 00:00:00'),
+(19, 5, '2022-01-31 00:00:00'),
+(20, 5, '2022-01-31 00:00:00'),
+(21, 5, '2022-01-31 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `ordersproducts`
+-- Table structure for table `ordersproducts`
 --
 
 CREATE TABLE `ordersproducts` (
@@ -61,7 +74,7 @@ CREATE TABLE `ordersproducts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `ordersproducts`
+-- Dumping data for table `ordersproducts`
 --
 
 INSERT INTO `ordersproducts` (`ID`, `orderID`, `productID`, `amount`) VALUES
@@ -76,7 +89,7 @@ INSERT INTO `ordersproducts` (`ID`, `orderID`, `productID`, `amount`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `products`
+-- Table structure for table `products`
 --
 
 CREATE TABLE `products` (
@@ -90,7 +103,7 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `products`
+-- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`productID`, `productName`, `imageID`, `productColour`, `ProductMaterial`, `productPrice`, `productCopy`) VALUES
@@ -104,7 +117,7 @@ INSERT INTO `products` (`productID`, `productName`, `imageID`, `productColour`, 
 -- --------------------------------------------------------
 
 --
--- Tabelstructuur voor tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -115,7 +128,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Gegevens worden geëxporteerd voor tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`userID`, `userName`, `userEmail`, `userPassword`) VALUES
@@ -126,57 +139,57 @@ INSERT INTO `users` (`userID`, `userName`, `userEmail`, `userPassword`) VALUES
 (6, 'geit', 'geit@distelwei.nl', 'disteldistel');
 
 --
--- Indexen voor geëxporteerde tabellen
+-- Indexes for dumped tables
 --
 
 --
--- Indexen voor tabel `orders`
+-- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexen voor tabel `ordersproducts`
+-- Indexes for table `ordersproducts`
 --
 ALTER TABLE `ordersproducts`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexen voor tabel `products`
+-- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`productID`);
 
 --
--- Indexen voor tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`userID`);
 
 --
--- AUTO_INCREMENT voor geëxporteerde tabellen
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT voor een tabel `orders`
+-- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT voor een tabel `ordersproducts`
+-- AUTO_INCREMENT for table `ordersproducts`
 --
 ALTER TABLE `ordersproducts`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT voor een tabel `products`
+-- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT voor een tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `userID` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
